@@ -1,0 +1,14 @@
+.v-center{
+  margin-top:100px;
+}
+
+.dropdown-menu {
+  left: 50%;
+  right: auto;
+  text-align: center;
+  transform: translate(-50%, 0);
+}
+
+html{
+  font-family: 'Open Sans', sans-serif;
+}
