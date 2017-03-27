@@ -8,8 +8,10 @@
     if($user) {
       // Логин введен правильно
       if(password_verify($data['password'], $user->password)) {
-        echo 'test';
-      } else {
+        $_SESSION['logged_user'] = $user;
+        echo 'Все кул, вы авторизованы';
+      }
+      else {
         $errors[] = 'Неверный пароль!';
       }
     } else {
@@ -21,7 +23,6 @@
   }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
