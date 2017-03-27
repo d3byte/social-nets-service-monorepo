@@ -8,12 +8,11 @@
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css">
-    <link rel="stylesheet" href="../styles/customstyles.css" type="text/css">
+    <link rel="stylesheet" href="../styles/customstyle.css" type="text/css">
     <link rel="stylesheet" href="../styles/buttons.css" type="text/css">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="../bootstrap/font-awesome/css/font-awesome.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic" rel="stylesheet">
-    <script src="../js/modal.js"></script>
 </head>
 
 <body>
@@ -33,7 +32,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class=""><a href="admin.html">Заказы <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="#">Заказы <span class="sr-only">(current)</span></a></li>
         <li class="dropdown active">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Товары <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -53,64 +52,28 @@
 <div class="col-lg-4"></div>
 <div class="col-lg-4">
   <center>
-<h1>Редактирование товара</h1>
-<h2>Выберите товар: </h2>
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle btn-outline" type="button" data-toggle="dropdown">Выбрать товар
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="#">Володя</a></li>
-    <li><a href="#">Димон</a></li>
-    <li><a href="#">ОМОНовец</a></li>
-  </ul>
-</div>
+<h1>Добавление товара</h1>
 <div class="form-group">
-    <label for="name">Название товара</label>
-    <input type="text" class="form-control" id="name" placeholder="ОМОНовец с митинга Навального"> <!-- подставляется название товара -->
+    <label for="name">Наименование</label>
+    <input type="text" class="form-control" id="name" placeholder="Наименование товара">
 </div>
 <div class="form-group">
     <label for="price">Стоимость</label>
-    <input type="text" class="form-control" id="price" placeholder="9.99"> <!--  подставляется его цена  -->
+    <input type="text" class="form-control" id="price" placeholder="Цена">
 </div>
-<button style="margin-bottom:10px" class="btn btn-success btn-outline" data-toggle="modal" data-target="#myModal2">Обновить выбранный товар </button>
-<button class="btn btn-danger btn-outline" data-toggle="modal" data-target="#myModal">Удалить выбранный товар </button>
+<h3> Выберите социальные сети: </h3>
+<div class="checkbox">
+  <label><input type="checkbox" value="">ВК</label>
+</div>
+<div class="checkbox">
+  <label><input type="checkbox" value="">Instagram</label>
+</div>
+<button class="btn btn-success btn-outline">Добавить товар </button>
 </center>
 </div>
 <div class="col-lg-4"></div>
 
-<!-- modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        Выбранный товар успешно удалён.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-outline" data-dismiss="modal">Закрыть</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        Выбранный товар успешно обновлен.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-outline" data-dismiss="modal">Закрыть</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
     <script src="https://cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>

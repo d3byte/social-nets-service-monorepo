@@ -72,7 +72,7 @@
     <label for="price">Стоимость</label>
     <input type="text" class="form-control" id="price" placeholder="9.99"> <!--  подставляется его цена  -->
 </div>
-<button style="margin-bottom:10px" class="btn btn-success btn-outline" data-toggle="modal" data-target="#myModal2">Обновить выбранный товар </button>
+<button class="btn btn-success btn-outline" data-toggle="modal" data-target="#myModal2">Обновить выбранный товар </button>
 <button class="btn btn-danger btn-outline" data-toggle="modal" data-target="#myModal">Удалить выбранный товар </button>
 </center>
 </div>
