@@ -1,5 +1,25 @@
 <?php
   require 'db.php';
+
+  $data = $_POST
+  if(isset($data['admin_login'])) {
+    $errors = [];
+    $user = R::findOne('admins', 'login = ?', array($data['login']));
+    if($user) {
+      // Логин введен правильно
+      if(password_verify($data['password'], $user->password)) {
+        echo 'test';
+      } else {
+        $errors[] = 'Неверный пароль!';
+      }
+    } else {
+      $errors[] = 'Неверный логин!';
+    }
+
+    if(!empty($erros))
+      echo '<div class="row"><div class="col-lg-12" style="color: red;"><center><h4>'.array_shift($errors).'</h4></center></div></div><hr>';
+  }
+
 ?>
 
 
@@ -29,14 +49,14 @@
       <form action="/admin_login.php" method="post">
         <div class="form-group">
             <label for="nick">Логин</label>
-            <input type="text" class="form-control" id="nick" name="login"placeholder="Логин">
+            <input type="text" class="form-control" id="nick" name="login" placeholder="Логин">
         </div>
         <div class="form-group">
             <label for="pass">Пароль</label>
             <input type="password" class="form-control" id="pass" name="password" placeholder="Пароль">
         </div>
         <br>
-        <button type="submit" class="btn btn-success btn-outline">Войти</button>
+        <button type="submit" name="admin_login" class="btn btn-success btn-outline">Войти</button>
       </form>
 
     </center>
