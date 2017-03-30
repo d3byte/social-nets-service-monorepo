@@ -3,7 +3,7 @@
 
 ?>
 
-<?php if(isset($_SESSION['logged_user'])): ?>
+<?php if(isset($_SESSION['logged_user'])) { ?>
   <!DOCTYPE html>
   <html lang="en">
 
@@ -84,7 +84,7 @@
 
   </html>
 <?php
-  else:
-    require 'admin_login.php';
-  endif;
+  } else {
+    include 'admin_login.php';
+  }
 ?>

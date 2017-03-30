@@ -1,27 +1,11 @@
 <?php
-  require 'db.php';
+require_once("libs/User.class.php");
+if(isset($_POST["submit"])) {
+  $userObject = new User("admins");
+  $user = $userObject->GetUserWhereLogin("root");
 
-  $data = $_POST
-  if(isset($data['admin_login'])) {
-    $errors = [];
-    $user = R::findOne('admins', 'login = ?', array($data['login']));
-    if($user) {
-      // Логин введен правильно
-      if(password_verify($data['password'], $user->password)) {
-        $_SESSION['logged_user'] = $user;
-        echo 'Все кул, вы авторизованы';
-      }
-      else {
-        $errors[] = 'Неверный пароль!';
-      }
-    } else {
-      $errors[] = 'Неверный логин!';
-    }
-
-    if(!empty($erros))
-      echo '<div class="row"><div class="col-lg-12" style="color: red;"><center><h4>'.array_shift($errors).'</h4></center></div></div><hr>';
-  }
-
+  print_r($user);
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +15,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Вход в панель администратора</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css">
     <link rel="stylesheet" href="../styles/customstyle.css" type="text/css">
@@ -47,17 +31,17 @@
     <center>
       <h1 style="margin-bottom:150px;"> Вход в панель администрирования *project_name* </h1>
 
-      <form action="/admin_login.php" method="post">
+      <form action="" method="post">
         <div class="form-group">
             <label for="nick">Логин</label>
-            <input type="text" class="form-control" id="nick" name="login" placeholder="Логин">
+            <input type="text" class="form-control" id="nick" name="login" placeholder="Логин" required>
         </div>
         <div class="form-group">
             <label for="pass">Пароль</label>
-            <input type="password" class="form-control" id="pass" name="password" placeholder="Пароль">
+            <input type="password" class="form-control" id="pass" name="password" placeholder="Пароль" required>
         </div>
         <br>
-        <button type="submit" name="admin_login" class="btn btn-success btn-outline">Войти</button>
+        <button type="submit" name="submit" class="btn btn-success btn-outline">Войти</button>
       </form>
 
     </center>
