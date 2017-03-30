@@ -32,10 +32,10 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="balance.html"> Счёт *x*₽ </a></li>
+                    <li class="active"><a href="balance.html"> Счёт *x*₽ </a></li>
                     <li><a href="#">Заказы <span class="sr-only">(current)</span></a></li>
                     <li><a href="profile.html"> История </a></li>
-                    <li class="active"><a href="market.html"> Новый заказ </a></li>
+                    <li><a href="market.html"> Новый заказ </a></li>
                     <li><a href="support.html"> Поддержка </a></li>
                     <li><a href="./admin_login.html">Выйти</a></li>
                 </ul>
@@ -46,39 +46,41 @@
     </nav>
 
     <main>
-      <center>
-      <div class="col-lg-12">
-        <h1> Создание заказа </h1>
-      </div>
-      <div class="col-lg-12">
-        <h2> Выберите социальную сеть: </h2>
-        <button class="btn btn-default btn-outline">YouTube</button>
-        <button class="btn btn-default btn-outline">Instagram</button>
-        <button class="btn btn-default btn-outline">Twitter</button>
-        <hr>
-      </div>
-      <div class="col-lg-12">
-        <h2> Выберите категорию услуг: </h2>
-      </div>
-      <div class="col-lg-12" id="youtube_services">
-        <button class="btn btn-default btn-outline">Просмотры</button>
-        <button class="btn btn-default btn-outline">Подписчики</button>
-        <button class="btn btn-default btn-outline">Комплексный заказ</button>
-        <button class="btn btn-default btn-outline">Дизлайки</button>
-        <button class="btn btn-default btn-outline">Избранное</button>
-        <button class="btn btn-default btn-outline">Комментарии</button>
-        <button class="btn btn-default btn-outline">Лайки</button>
-        <button class="btn btn-default btn-outline">Репосты в соцсети</button>
-        <hr>
-      </div>
-      <div class="col-lg-12">
-        <h2> Выберите услугу: </h2>
-      </div>
-      <div class="col-lg-12" id="youtube_services_more_views">
-        
-      </div>
+        <div class="col-lg-12">
+            <center>
+                <h1> Пополнение баланса: </h1>
+                <p> Выберите платежную систему, укажите сумму и нажмите "оплатить", далее следуйте инструкциям платежной системы. </p>
+                <hr>
+        </div>
 
-    </center>
+
+        <div class="col-lg-4"></div>
+
+        <div class="col-lg-4">
+            <center>
+                <div class="form-group">
+                    <div class="radio active">
+                        <label><input type="radio" name="optradio">Яндекс.Деньги</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="optradio">WebMoney</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="optradio" disabled>Qiwi</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="optradio">Банковские карты</label>
+                    </div>
+                    <label for="price">Сумма пополнения, руб.</label>
+                    <input type="text" class="form-control" id="price"></input>
+                    <br>
+                    <button class="btn btn-success btn-outline">Оплатить</button>
+                    <button class="btn btn-danger btn-outline">Отмена</button>
+                </div>
+            </center>
+        </div>
+        <div class="col-lg-4"></div>
+        </center>
     </main>
 
 
