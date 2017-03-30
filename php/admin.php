@@ -1,9 +1,8 @@
 <?php
   require 'db.php';
-
+  if(isset($_SESSION['logged_user'])) {
 ?>
 
-<?php if(isset($_SESSION['logged_user'])) { ?>
   <!DOCTYPE html>
   <html lang="en">
 
@@ -42,13 +41,13 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Товары <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="./admin_add.html">Добавить товар</a></li>
-              <li><a href="./admin_redact.html">Редактировать товар</a></li>
+              <li><a href="./admin_add.php">Добавить товар</a></li>
+              <li><a href="./admin_redact.php">Редактировать товар</a></li>
             </ul>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/logout.php">Выйти</a></li>
+          <li><a href="logout.php">Выйти</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -83,8 +82,7 @@
   </body>
 
   </html>
-<?php
-  } else {
-    include 'admin_login.php';
-  }
+  <?php 
+  } else 
+    header("Location: admin_login.php");
 ?>

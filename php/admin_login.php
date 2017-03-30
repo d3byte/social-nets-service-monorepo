@@ -1,11 +1,18 @@
 <?php
-require_once("libs/User.class.php");
-if(isset($_POST["submit"])) {
-  $userObject = new User("admins");
-  $user = $userObject->GetUserWhereLogin("root");
+  require("db.php");
 
-  print_r($user);
-}
+  if(isset($_POST["submit"])) {
+    $user = R::findOne("admins", "login = ?", array($_POST["login"]));
+    if($user) {
+      // Логин введен правильно
+      if($_POST["password"] == $user->password) {
+        $_SESSION["logged_user"] = $user;
+        header("Location: admin.php");
+      } else
+        echo "Неверный пароль!";
+    } else
+        echo "Неверный логин!";
+    }
 ?>
 
 <!DOCTYPE html>

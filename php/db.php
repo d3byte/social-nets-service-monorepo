@@ -1,8 +1,7 @@
 <?php
-  require '../php/libs/rb.php';
+  require "/libs/rb.php";
 
-  R::setup('mysql:host=149.202.160.211;dbname=panda',
-       'panda', 'iZerrio123');
+  R::setup("mysql:host=127.0.0.1;port=3307;dbname=panda", "root", "");
 
 
   session_start();
