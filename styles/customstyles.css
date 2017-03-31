@@ -12,3 +12,11 @@
 html{
   font-family: 'Open Sans', sans-serif;
 }
+
+.hide{
+  display:none;
+}
+
+.show{
+  display:block;
+}
