@@ -1,3 +1,8 @@
+<?php
+  require 'db.php';
+  if(isset($_SESSION['logged_user'])) {
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,17 +38,17 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class=""><a href="admin.html">Заказы <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="admin.php">Заказы <span class="sr-only">(current)</span></a></li>
         <li class="dropdown active">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Товары <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li class="active"><a href="./admin_add.html">Добавить товар</a></li>
-            <li><a href="./admin_redact.html">Редактировать товар</a></li>
+            <li class="active"><a href="admin_add.php">Добавить товар</a></li>
+            <li><a href="admin_redact.php">Редактировать товар</a></li>
           </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="./admin_login.html">Выйти</a></li>
+        <li><a href="logout.php">Выйти</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -64,7 +69,7 @@
     <li><a href="#">ОМОНовец</a></li>
   </ul>
 </div>
-<div class="form-group">
+<div class="\form-group">
     <label for="name">Название товара</label>
     <input type="text" class="form-control" id="name" placeholder="ОМОНовец с митинга Навального"> <!-- подставляется название товара -->
 </div>
@@ -72,7 +77,7 @@
     <label for="price">Стоимость</label>
     <input type="text" class="form-control" id="price" placeholder="9.99"> <!--  подставляется его цена  -->
 </div>
-<button style="margin-bottom:10px" class="btn btn-success btn-outline" data-toggle="modal" data-target="#myModal2">Обновить выбранный товар </button>
+<button class="btn btn-success btn-outline" data-toggle="modal" data-target="#myModal2">Обновить выбранный товар </button>
 <button class="btn btn-danger btn-outline" data-toggle="modal" data-target="#myModal">Удалить выбранный товар </button>
 </center>
 </div>
@@ -118,3 +123,7 @@
 </body>
 
 </html>
+<?php 
+  } else 
+    header("Location: admin_login.php");
+?>
