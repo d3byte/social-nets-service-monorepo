@@ -8,18 +8,20 @@
       if($_POST["password"] == $user->password) {
         $_SESSION["logged_user"] = $user;
         header("Location: admin.php");
-      } else ?>
+      } else { ?>
         <script>
         $(document).ready(function(){
           $('#inv_pass').removeClass('hide').addClass('show');
         });
         </script>
         <?php
-    } else ?>
+    } else { ?>
     <script>
-        $('#inv_log').removeClass('hide').addClass('show');
-        </script>
-    }
+    $(document).ready(function(){
+      $('#inv_log').removeClass('hide').addClass('show');
+    });
+    </script>
+<?php } ?>
 
 
 <!DOCTYPE html>
