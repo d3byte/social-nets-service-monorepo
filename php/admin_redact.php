@@ -2,11 +2,14 @@
   require 'db.php';
   if(isset($_SESSION['logged_user'])) {
     if(isset($_POST["submit"])) {
-      $tovar = R::dispense('ordersmain');
+      $tovar = R::findOne('ordersmain', 'name = ?', array($_POST['tovar']));
       $tovar['name'] = $_POST['name'];
       $tovar['description'] = $_POST['description'];
       $tovar['price'] = $_POST['price'];
       R::store($tovar);
+    } else if(isset($_POST["delete"])) {
+        $tovar = R::findOne('ordersmain', 'name = ?', array($_POST['tovar']));
+        R::trash($tovar);
     }
     $goods = R::findAll("ordersmain");
 ?>
@@ -80,14 +83,18 @@
       </div>
       <div class="form-group">
           <label for="name">Название товара</label>
-          <input type="text" class="form-control" id="name" placeholder="ОМОНовец с митинга Навального"> <!-- подставляется название товара -->
+          <input type="text" class="form-control" name="name" placeholder="ОМОНовец с митинга Навального"> <!-- подставляется название товара -->
+      </div>
+      <div class="form-group">
+          <label for="name">Описание товара</label>
+          <input type="text" class="form-control" name="description" placeholder="ОМОНовец с митинга Навального"> <!-- подставляется название товара -->
       </div>
       <div class="form-group">
           <label for="price">Стоимость</label>
-          <input type="text" class="form-control" id="price" placeholder="9.99"> <!--  подставляется его цена  -->
+          <input type="text" class="form-control" name="price" placeholder="9.99"> <!--  подставляется его цена  -->
       </div>
-      <button class="btn btn-success btn-outline" data-toggle="modal" data-target="#myModal2">Обновить выбранный товар </button>
-      <button class="btn btn-danger btn-outline" data-toggle="modal" data-target="#myModal">Удалить выбранный товар </button>
+      <button name="submit" class="btn btn-success btn-outline" data-toggle="modal" data-target="#myModal2">Обновить выбранный товар </button>
+      <button name="delete" class="btn btn-danger btn-outline" data-toggle="modal" data-target="#myModal">Удалить выбранный товар </button>
     </form>
 </center>
 </div>
