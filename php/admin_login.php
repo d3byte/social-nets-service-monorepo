@@ -1,5 +1,5 @@
 <?php
-  require("db.php");
+  require "db.php";
 
   if(isset($_POST["submit"])) {
     $user = R::findOne("admins", "login = ?", array($_POST["login"]));

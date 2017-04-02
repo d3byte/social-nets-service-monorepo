@@ -1,6 +1,14 @@
 <?php
   require 'db.php';
   if(isset($_SESSION['logged_user'])) {
+    if(isset($_POST["submit"])) {
+      $tovar = R::dispense('ordersmain');
+      $tovar['name'] = $_POST['name'];
+      $tovar['description'] = $_POST['description'];
+      $tovar['price'] = $_POST['price'];
+      R::store($tovar);
+    }
+    $goods = R::findAll("ordersmain");
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +18,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Изменить товар</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css">
     <link rel="stylesheet" href="../styles/customstyles.css" type="text/css">
@@ -32,7 +40,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Администрирование</a>
+      <a class="navbar-brand" href="admin.php">Администрирование</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,27 +66,29 @@
 <div class="col-lg-4"></div>
 <div class="col-lg-4">
   <center>
-<h1>Редактирование товара</h1>
-<h2>Выберите товар: </h2>
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle btn-outline" type="button" data-toggle="dropdown">Выбрать товар
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="#">Володя</a></li>
-    <li><a href="#">Димон</a></li>
-    <li><a href="#">ОМОНовец</a></li>
-  </ul>
-</div>
-<div class="\form-group">
-    <label for="name">Название товара</label>
-    <input type="text" class="form-control" id="name" placeholder="ОМОНовец с митинга Навального"> <!-- подставляется название товара -->
-</div>
-<div class="form-group">
-    <label for="price">Стоимость</label>
-    <input type="text" class="form-control" id="price" placeholder="9.99"> <!--  подставляется его цена  -->
-</div>
-<button class="btn btn-success btn-outline" data-toggle="modal" data-target="#myModal2">Обновить выбранный товар </button>
-<button class="btn btn-danger btn-outline" data-toggle="modal" data-target="#myModal">Удалить выбранный товар </button>
+    <form action="" method="post">
+      <h1>Редактирование товара</h1>
+      <h2>Выберите товар: </h2>
+      <div class="dropdown">
+        <select name="tovar">
+          <?php
+            foreach($goods as $good) {
+              echo '<option value="'.$good['name'].'">'.$good['name'].'</option>';
+            }
+          ?>
+        </select>
+      </div>
+      <div class="form-group">
+          <label for="name">Название товара</label>
+          <input type="text" class="form-control" id="name" placeholder="ОМОНовец с митинга Навального"> <!-- подставляется название товара -->
+      </div>
+      <div class="form-group">
+          <label for="price">Стоимость</label>
+          <input type="text" class="form-control" id="price" placeholder="9.99"> <!--  подставляется его цена  -->
+      </div>
+      <button class="btn btn-success btn-outline" data-toggle="modal" data-target="#myModal2">Обновить выбранный товар </button>
+      <button class="btn btn-danger btn-outline" data-toggle="modal" data-target="#myModal">Удалить выбранный товар </button>
+    </form>
 </center>
 </div>
 <div class="col-lg-4"></div>
@@ -123,7 +133,7 @@
 </body>
 
 </html>
-<?php 
-  } else 
+<?php
+  } else
     header("Location: admin_login.php");
 ?>
