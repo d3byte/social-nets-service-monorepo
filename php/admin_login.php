@@ -8,12 +8,19 @@
       if($_POST["password"] == $user->password) {
         $_SESSION["logged_user"] = $user;
         header("Location: admin.php");
-      } else
-        echo "Неверный пароль!";
-    } else
-        echo "Неверный логин!";
+      } else ?>
+        <script>
+        $(document).ready(function(){
+          $('#inv_pass').removeClass('hide').addClass('show');
+        });
+        </script>
+        <?php
+    } else ?>
+    <script>
+        $('#inv_log').removeClass('hide').addClass('show');
+        </script>
     }
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +54,9 @@
             <label for="pass">Пароль</label>
             <input type="password" class="form-control" id="pass" name="password" placeholder="Пароль" required>
         </div>
+        <br>
+        <p style="color:red" class="hide" id="inv_log">Неверный логин! </p>
+        <p style="color:red" class="hide" id="inv_pass">Неверный пароль! </p>
         <br>
         <button type="submit" name="submit" class="btn btn-success btn-outline">Войти</button>
       </form>
