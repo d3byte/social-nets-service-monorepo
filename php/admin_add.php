@@ -68,15 +68,15 @@
       <h1>Добавление товара</h1>
       <div class="form-group">
           <label for="name">Наименование</label>
-          <input type="text" class="form-control" name="name" placeholder="Наименование товара">
+          <input type="text" class="form-control" name="name" placeholder="Наименование товара" required>
       </div>
       <div class="form-group">
         <label for="description">Описание</label>
-        <input type="text" class="form-control" name="description" placeholder="Описание товара">
+        <input type="text" class="form-control" name="description" placeholder="Описание товара" required>
       </div>
       <div class="form-group">
           <label for="price">Стоимость</label>
-          <input type="text" class="form-control" name="price" placeholder="Цена">
+          <input type="text" class="form-control" name="price" placeholder="Цена" required>
       </div>
       <button name="submit" type="submit" class="btn btn-success btn-outline">Добавить товар </button>
     </form>

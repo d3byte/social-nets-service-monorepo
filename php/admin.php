@@ -2,6 +2,15 @@
   require 'db.php';
   if(isset($_SESSION['logged_user'])) {
     $orders = R::findAll('orders');
+    if(isset($_POST['submit'])) {
+      $order = R::findOne('orders', 'id = ?', array($_POST['id']));
+      $order['status'] = 'Выполнен';
+      R::store($order);
+    } else if(isset($_POST['process'])) {
+      $order = R::findOne('orders', 'id = ?', array($_POST['id']));
+      $order['status'] = 'Выполняется';
+      R::store($order);
+    }
 ?>
 
   <!DOCTYPE html>
@@ -56,34 +65,54 @@
 
 
   <div class="col-lg-12">
+    <center>
+      <form action="" method="post">
+        <h4>Изменить состояние:</h4>
+        <select name="id">
+          <?php
+            foreach($orders as $order) {
+              $orderInMain = R::findOne("ordersmain", "id = ?", array($order['typeid']));
+              $orderName = $orderInMain['name'];
+              echo '<option value="'.$order['id'].'">Заказ №'.$order['id'].'. Тип услуги: '.$orderName.'</option>';
+            }
+          ?>
+        </select>
+        <center>
+          <button style="margin-top: 10px;" name="submit" type="submit" class="btn btn-success btn-outline">Выполнен </button>
+          <button style="margin-top: 10px;" name="process" type="submit" class="btn btn-info btn-outline">Выполняется </button>
+        </center>
+      </form>
+    </center>
+    <hr>
     <table style="width:100%">
-      <tr>
-        <th>Ссылка</th>
-        <th>id</th>
-        <th>Наименование услуги</th>
-        <th>Статус заказа</th>
-      </tr>
-      <!-- <tr>
-        <td><a href="https://instagram.com/dierk_hackir">instagram.com/dierk_hackir</a></td>
-        <td>Накрутка подписчиков 1</td>
-        <td>Не выполнен <span><a href="#">Изменить</a></span></td>
-      </tr>
-      <tr>
-        <td><a href="https://vk.com/dierk">vk.com/dierk</a></td>
-        <td>Накрутка подписчиков 2</td>
-        <td>Выполнен <span><a href="#">Изменить</a></span></td>
-      </tr> -->
-      <?php
-        foreach($orders as $order) {
-          $orderInMain = R::findOne("ordersmain", "id = ?", array($order['typeid']));
-          $orderName = $orderInMain['name'];
-          echo '<tr><td><a href="'.$order['link'].'">'.$order['link'].'</a></td>';
-          echo '<td>'.$order['id'].'</td>';
-          echo '<td>'.$orderName.'</td>';
-          echo '<td>'.$order['status'].' – <span><a href="changeStatus.php">изменить</a></span></td></tr>';
-        }
+        <tr>
+          <th>Ссылка</th>
+          <th>id</th>
+          <th>Наименование услуги</th>
+          <th>Статус заказа</th>
+        </tr>
+        <!-- <tr>
+          <td><a href="https://instagram.com/dierk_hackir">instagram.com/dierk_hackir</a></td>
+          <td>Накрутка подписчиков 1</td>
+          <td>Не выполнен <span><a href="#">Изменить</a></span></td>
+        </tr>
+        <tr>
+          <td><a href="https://vk.com/dierk">vk.com/dierk</a></td>
+          <td>Накрутка подписчиков 2</td>
+          <td>Выполнен <span><a href="#">Изменить</a></span></td>
+        </tr> -->
+        <?php
+          foreach($orders as $order) {
+            $orderInMain = R::findOne("ordersmain", "id = ?", array($order['typeid']));
+            $orderName = $orderInMain['name'];
+            echo '<tr><td><a href="'.$order['link'].'">'.$order['link'].'</a></td>';
+            echo '<td>'.$order['id'].'</td>';
+            echo '<td>'.$orderName.'</td>';
+            echo '<td>'.$order['status'];
+          }
         ?>
     </table>
+    <hr>
   </div>
 
 

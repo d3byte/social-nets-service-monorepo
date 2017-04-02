@@ -12,3 +12,7 @@
 html{
   font-family: 'Open Sans', sans-serif;
 }
+
+table tr {
+  height: 20px;
+}
