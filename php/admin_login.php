@@ -9,9 +9,9 @@
         $_SESSION["logged_user"] = $user;
         header("Location: admin.php");
       } else
-        echo "Неверный пароль!";
+        echo '<center><h3 style="color:red;">Неверный пароль!</h3></center>';
     } else
-        echo "Неверный логин!";
+        echo '<center><h3 style="color:red;">Неверный логин!</h3></center>';
     }
 ?>
 

@@ -2,6 +2,9 @@
   require 'db.php';
 
   if(isset($_SESSION['logged_user'])) {
+    if(isset($_POST['submit']) {
+      
+    }
 ?>
 
 <!DOCTYPE html>
@@ -54,28 +57,26 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-
 <div class="col-lg-4"></div>
 <div class="col-lg-4">
   <center>
-<h1>Добавление товара</h1>
-<div class="form-group">
-    <label for="name">Наименование</label>
-    <input type="text" class="form-control" id="name" placeholder="Наименование товара">
-</div>
-<div class="form-group">
-    <label for="price">Стоимость</label>
-    <input type="text" class="form-control" id="price" placeholder="Цена">
-</div>
-<h3> Выберите социальные сети: </h3>
-<div class="checkbox">
-  <label><input type="checkbox" value="">ВК</label>
-</div>
-<div class="checkbox">
-  <label><input type="checkbox" value="">Instagram</label>
-</div>
-<button class="btn btn-success btn-outline">Добавить товар </button>
-</center>
+    <form action="" method="post">
+      <h1>Добавление товара</h1>
+      <div class="form-group">
+          <label for="name">Наименование</label>
+          <input type="text" class="form-control" name="name" placeholder="Наименование товара">
+      </div>
+      <div class="form-group">
+        <label for="description">Описание</label>
+        <input type="text" class="form-control" name="description" placeholder="Описание товара">
+      </div>
+      <div class="form-group">
+          <label for="price">Стоимость</label>
+          <input type="text" class="form-control" name="price" placeholder="Цена">
+      </div>
+      <button type="submit" class="btn btn-success btn-outline">Добавить товар </button>
+    </form>
+  </center>
 </div>
 <div class="col-lg-4"></div>
 
@@ -87,7 +88,7 @@
 </body>
 
 </html>
-<?php 
-  } else 
+<?php
+  } else
     header("Location: admin_login.php");
 ?>
