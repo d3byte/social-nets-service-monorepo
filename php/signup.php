@@ -4,14 +4,18 @@
   $errors = [];
   if(isset($_POST['submit'])) {
     if($_POST['password'] != $_POST['password2'])
-      $errors[] = ' – <span style="color:red;">введенные пароли не совпадают!</span>';
+      $errors[] = '<span style="color:red;">Введенные пароли не совпадают!</span>';
+    else if(R::count('users', 'login = ?', array($_POST['login'])) > 0)
+      $errors[] = '<span style="color:red;">Пользователь с таким логином уже существует!</span>';
+    else if(R::count('users', 'email = ?', array($_POST['email'])) > 0)
+      $errors[] = '<span style="color:red;">Пользователь с такой почтой уже существует!</span>';
     else {
       $user = R::dispense('users');
       $user->login = $_POST['login'];
       $user->email = $_POST['email'];
       $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
       R::store($user);
-      header('Location: ')
+      header('Location: signin.php');
     }
   }
 ?>
@@ -38,21 +42,22 @@
   <div class="col-lg-4">
     <center>
       <h1 style="margin-bottom:190px;"> Регистрация на *project_name* </h1>
+      <h4><?php echo array_shift($errors);?></h4>
       <form action="" method="post">
+        <div class="form-group">
+            <label for="nick">Ваш логин</label>
+            <input required type="text" class="form-control" id="nick" name="login" placeholder="Login" value="<?php echo $_POST['login']; ?>">
+        </div>
         <div class="form-group">
             <label for="nick">Ваша почта</label>
             <input required type="email" class="form-control" id="nick" name="email" placeholder="aaa@xxx.ru" value="<?php echo $_POST['email']; ?>">
-        </div>
-        <div class="form-group">
-            <label for="nick">Ваша логин</label>
-            <input required type="email" class="form-control" id="nick" name="login" placeholder="Login" value="<?php echo $_POST['login']; ?>">
         </div>
         <div class="form-group">
             <label for="pass">Ваш пароль</label>
             <input required type="password" class="form-control" id="pass" name="password" placeholder="Пароль" value="<?php echo $_POST['password']; ?>">
         </div>
         <div class="form-group">
-            <label for="pass">Подтвердите пароль<?php echo array_shift($errors);?> </label>
+            <label for="pass">Подтвердите пароль</label>
             <input required type="password" class="form-control" id="pass" name="password2" placeholder="Пароль">
         </div>
         <button name="submit" type="submit" class="btn btn-success btn-outline">Зарегистрироваться</button>

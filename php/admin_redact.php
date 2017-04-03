@@ -1,6 +1,6 @@
 <?php
   require 'db.php';
-  if(isset($_SESSION['logged_user'])) {
+  if(isset($_SESSION['logged_admin'])) {
     if(isset($_POST["submit"])) {
       $tovar = R::findOne('ordersmain', 'name = ?', array($_POST['tovar']));
       $tovar['name'] = $_POST['name'];

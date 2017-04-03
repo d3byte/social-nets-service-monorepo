@@ -1,6 +1,6 @@
 <?php
   require 'db.php';
-  if(isset($_SESSION['logged_user'])) {
+  if(isset($_SESSION['logged_admin'])) {
     $orders = R::findAll('orders');
     if(isset($_POST['submit'])) {
       $order = R::findOne('orders', 'id = ?', array($_POST['id']));

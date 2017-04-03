@@ -1,3 +1,9 @@
+<?php
+  require 'db.php';
+  if(isset($_SESSION['logged_user'])) {
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,12 +38,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="balance.html"> Счёт *x*₽ </a></li>
+        <li><a href="balance.php"> Счёт *x*₽ </a></li>
         <li><a href="#">Заказы <span class="sr-only">(current)</span></a></li>
         <li class="active"><a href="profile.html"> История </a></li>
-        <li><a href="market.html"> Новый заказ </a></li>
-        <li><a href="support.html"> Поддержка </a></li>
-        <li><a href="./admin_login.html">Выйти</a></li>
+        <li><a href="market.php"> Новый заказ </a></li>
+        <li><a href="support.php"> Поддержка </a></li>
+        <li><a href="logout.php">Выйти</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -68,15 +74,12 @@
   </div>
 </center>
 </main>
-
-
-
-
-
-
-
     <script src="https://cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 
 </html>
+
+<?php
+  } else header('Location: signin.php');
+?>

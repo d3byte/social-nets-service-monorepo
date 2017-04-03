@@ -1,7 +1,7 @@
 <?php
   require 'db.php';
 
-  if(isset($_SESSION['logged_user'])) {
+  if(isset($_SESSION['logged_admin'])) {
     if(isset($_POST["submit"])) {
       $tovar = R::dispense('ordersmain');
       $tovar['name'] = $_POST['name'];
