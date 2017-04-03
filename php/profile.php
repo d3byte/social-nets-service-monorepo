@@ -1,7 +1,7 @@
 <?php
   require 'db.php';
   if(isset($_SESSION['logged_user'])) {
-
+    $actions = R::findAll('userlogs', 'userid = ?', array($_SESSION['logged_user']['id']));
 ?>
 
 <!DOCTYPE html>
@@ -58,18 +58,12 @@
         <th>Дата</th>
         <th>Событие</th>
       </tr>
-      <tr>
-        <td>23.05.2017 13:37</td>
-        <td>Пользователь создан</td>
-      </tr>
-      <tr>
-        <td>23.05.2017 13:38</td>
-        <td>Пополнение баланса. +1337 руб.</td>
-      </tr>
-      <tr>
-        <td>23.05.2017 13:40</td>
-        <td>Заказ "накрутка подписчиков 1".</td>
-      </tr>
+      <?php
+        foreach($actions as $action) {
+          echo '<tr><td>'.$action['date'].'</td>';
+          echo '<td>'.$action['action'].'</td></tr';
+        }
+      ?>
     </table>
   </div>
 </center>

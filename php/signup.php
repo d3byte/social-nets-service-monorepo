@@ -15,6 +15,12 @@
       $user->email = $_POST['email'];
       $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
       R::store($user);
+      $usid = R::findOne('users', 'login = ?', array($_POST['login']));
+      $action = R::dispense('userlogs');
+      $action->userid = $usid['id'];
+      $action->action = 'Пользователь создан';
+      $action->date = date("Y-m-d H:i:s");
+      R::store($action);
       header('Location: signin.php');
     }
   }
