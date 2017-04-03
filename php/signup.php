@@ -6,7 +6,12 @@
     if($_POST['password'] != $_POST['password2'])
       $errors[] = ' – <span style="color:red;">введенные пароли не совпадают!</span>';
     else {
-
+      $user = R::dispense('users');
+      $user->login = $_POST['login'];
+      $user->email = $_POST['email'];
+      $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+      R::store($user);
+      header('Location: ')
     }
   }
 ?>
@@ -33,15 +38,18 @@
   <div class="col-lg-4">
     <center>
       <h1 style="margin-bottom:190px;"> Регистрация на *project_name* </h1>
-
       <form action="" method="post">
         <div class="form-group">
             <label for="nick">Ваша почта</label>
-            <input required type="email" class="form-control" id="nick" name="login" placeholder="aaa@xxx.ru">
+            <input required type="email" class="form-control" id="nick" name="email" placeholder="aaa@xxx.ru" value="<?php echo $_POST['email']; ?>">
+        </div>
+        <div class="form-group">
+            <label for="nick">Ваша логин</label>
+            <input required type="email" class="form-control" id="nick" name="login" placeholder="Login" value="<?php echo $_POST['login']; ?>">
         </div>
         <div class="form-group">
             <label for="pass">Ваш пароль</label>
-            <input required type="password" class="form-control" id="pass" name="password" placeholder="Пароль">
+            <input required type="password" class="form-control" id="pass" name="password" placeholder="Пароль" value="<?php echo $_POST['password']; ?>">
         </div>
         <div class="form-group">
             <label for="pass">Подтвердите пароль<?php echo array_shift($errors);?> </label>
