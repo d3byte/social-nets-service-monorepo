@@ -1,0 +1,98 @@
+<?php
+  require 'db.php';
+  if(isset($_SESSION['logged_user'])) {
+    $orders = R::findAll('ordersmain');
+    if(isset($_POST['submit'])) {
+      $zakaz = R::dispense('orders');
+      $typeid = R::findOne('ordersmain', 'id = ?', array($_POST['order']));
+      $zakaz->typeid = $typeid['id'];
+      $zakaz->link = $_POST['link'];
+      $zakaz->status = 'Выполняется';
+      $zakaz->amount = 1;
+      R::store($zakaz);
+    }
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css">
+    <link rel="stylesheet" href="../styles/customstyle.css" type="text/css">
+    <link rel="stylesheet" href="../styles/buttons.css" type="text/css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="../bootstrap/font-awesome/css/font-awesome.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=cyrillic" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+                <a class="navbar-brand" href="#">*project_name*</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="balance.php"> Счёт *x*₽ </a></li>
+                    <li><a href="#">Заказы <span class="sr-only">(current)</span></a></li>
+                    <li><a href="profile.php"> История </a></li>
+                    <li class="active"><a href="market.php"> Новый заказ </a></li>
+                    <li><a href="support.php"> Поддержка </a></li>
+                    <li><a href="logout.php">Выйти</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <main>
+      <center>
+      <div class="col-lg-12">
+        <h1> Создание заказа </h1>
+      </div>
+      <div class="col-lg-12">
+        <h2> Выберите услугу: </h2>
+      </div>
+      <form action="" method="post">
+
+        <?php
+          foreach($orders as $order) {
+            echo '<div class="form-group">';
+            echo '<p><input type="radio" name="order" value="'.$order['id'].'" id="'.$order['id'].'">';
+            echo ' <label for="'.$order['id'].'">'.$order['name'].'</label></p>';
+            echo '<p>'.$order['description'].'</p><hr>';
+            echo '</div>';
+          }
+        ?>
+        <center>
+          <div class="form-group">
+            <input type="text" class="form-control" name="link" placeholder="Ссылка на соц.сеть, для которой вы заказываете услугу" required>
+          </div>
+          <button style="margin-top: 10px;" name="submit" type="submit" class="btn btn-success btn-outline">Заказать </button>
+        </center>
+      </form>
+    </center>
+    </main>
+    <script src="https://cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js "></script>
+    <script src="../js/buttons.js"
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js "></script>
+</body>
+</html>
+<?php
+  } else header('Location: signin.php');
+?>

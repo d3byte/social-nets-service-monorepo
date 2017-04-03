@@ -72,7 +72,7 @@
       </div>
       <div class="form-group">
         <label for="description">Описание</label>
-        <input type="text" class="form-control" name="description" placeholder="Описание товара" required>
+        <input type="text" class="form-control" name="description" placeholder="Цена за тысячу просмотров 1500 рублей" required>
       </div>
       <div class="form-group">
           <label for="price">Стоимость</label>

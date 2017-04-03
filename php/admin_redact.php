@@ -5,7 +5,8 @@
       $tovar = R::findOne('ordersmain', 'name = ?', array($_POST['tovar']));
       $tovar['name'] = $_POST['name'];
       $tovar['description'] = $_POST['description'];
-      $tovar['price'] = $_POST['price'];
+      if(isset($_POST['price']))
+        $tovar['price'] = $_POST['price'];
       R::store($tovar);
     } else if(isset($_POST["delete"])) {
         $tovar = R::findOne('ordersmain', 'name = ?', array($_POST['tovar']));
