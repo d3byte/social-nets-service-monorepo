@@ -1,18 +1,13 @@
 <?php
-  require "db.php";
+  require 'db.php';
 
   $errors = [];
-  if(isset($_POST["submit"])) {
-    $user = R::findOne("admins", "login = ?", array($_POST["login"]));
-    if($user) {
-      // Логин введен правильно
-      if($_POST["password"] == $user->password) {
-        $_SESSION["logged_user"] = $user;
-        header("Location: admin.php");
-      } else
-        $errors[] = '<span style="color:red;">Неверный логин или пароль!</span>';
-    } else
-      $errors[] = '<span style="color:red;">Неверный логин или пароль!</span>';
+  if(isset($_POST['submit'])) {
+    if($_POST['password'] != $_POST['password2'])
+      $errors[] = ' – <span style="color:red;">введенные пароли не совпадают!</span>';
+    else {
+
+    }
   }
 ?>
 
@@ -23,7 +18,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Вход в панель администратора</title>
+    <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css">
     <link rel="stylesheet" href="../styles/customstyle.css" type="text/css">
@@ -37,19 +32,22 @@
   <div class="col-lg-4"></div> <!-- для центровки -->
   <div class="col-lg-4">
     <center>
-      <h1 style="margin-bottom:150px;"> Вход в панель администрирования *project_name* </h1>
-      <h4><?php echo array_shift($errors); ?></h4>
+      <h1 style="margin-bottom:190px;"> Регистрация на *project_name* </h1>
+
       <form action="" method="post">
         <div class="form-group">
-            <label for="nick">Логин</label>
-            <input type="text" class="form-control" id="nick" name="login" placeholder="Логин" required>
+            <label for="nick">Ваша почта</label>
+            <input required type="email" class="form-control" id="nick" name="login" placeholder="aaa@xxx.ru">
         </div>
         <div class="form-group">
-            <label for="pass">Пароль</label>
-            <input type="password" class="form-control" id="pass" name="password" placeholder="Пароль" required>
+            <label for="pass">Ваш пароль</label>
+            <input required type="password" class="form-control" id="pass" name="password" placeholder="Пароль">
         </div>
-        <br>
-        <button type="submit" name="submit" class="btn btn-success btn-outline">Войти</button>
+        <div class="form-group">
+            <label for="pass">Подтвердите пароль<?php echo array_shift($errors);?> </label>
+            <input required type="password" class="form-control" id="pass" name="password2" placeholder="Пароль">
+        </div>
+        <button name="submit" type="submit" class="btn btn-success btn-outline">Зарегистрироваться</button>
       </form>
 
     </center>
