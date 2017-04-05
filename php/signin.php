@@ -1,18 +1,18 @@
 <?php
-  require "db.php";
+  require 'db.php';
 
   $errors = [];
-  if(isset($_POST["submit"])) {
-    $user = R::findOne("admins", "login = ?", array($_POST["login"]));
+  if(isset($_POST['submit'])) {
+    $user = R::findOne('users', 'login = ?', array($_POST['login']));
     if($user) {
-      // Логин введен правильно
-      if($_POST["password"] == $user->password) {
-        $_SESSION["logged_admin"] = $user;
-        header("Location: admin.php");
+      // check password
+      if(password_verify($_POST['password'], $user->password)) {
+        $_SESSION['logged_user'] = $user;
+        header("Location: profile.php");
       } else
-        $errors[] = '<span style="color:red;">Неверный логин или пароль!</span>';
+        $errors[] = '<span style="color:red;">Введенный пароль неверный!</span>';
     } else
-      $errors[] = '<span style="color:red;">Неверный логин или пароль!</span>';
+      $errors[] = '<span style="color:red;">Пользователь с таким логином не найден!</span>';
   }
 ?>
 
@@ -23,7 +23,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Вход в панель администратора</title>
+    <title>Авторизация</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css">
     <link rel="stylesheet" href="../styles/customstyle.css" type="text/css">
@@ -37,19 +37,19 @@
   <div class="col-lg-4"></div> <!-- для центровки -->
   <div class="col-lg-4">
     <center>
-      <h1 style="margin-bottom:150px;"> Вход в панель администрирования *project_name* </h1>
-      <h4><?php echo array_shift($errors); ?></h4>
+      <h1 style="margin-bottom:190px;"> Вход в *project_name* </h1>
+      <h4><?php echo array_shift($errors) ?></h4>
       <form action="" method="post">
         <div class="form-group">
-            <label for="nick">Логин</label>
-            <input type="text" class="form-control" id="nick" name="login" placeholder="Логин" required>
+            <label for="nick">Ваш логин</label>
+            <input type="text" class="form-control" id="nick" name="login" placeholder="Логин">
         </div>
         <div class="form-group">
-            <label for="pass">Пароль</label>
-            <input type="password" class="form-control" id="pass" name="password" placeholder="Пароль" required>
+            <label for="pass">Ваш пароль</label>
+            <input type="password" class="form-control" id="pass" name="password" placeholder="Пароль">
         </div>
-        <br>
-        <button type="submit" name="submit" class="btn btn-success btn-outline">Войти</button>
+        <p> Нет аккаунта?  <span><a href="signup.php">Зарегистрировать</a></p>
+        <button name="submit" type="submit" class="btn btn-success btn-outline">Войти</button>
       </form>
 
     </center>

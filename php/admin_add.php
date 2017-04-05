@@ -1,9 +1,13 @@
 <?php
   require 'db.php';
 
-  if(isset($_SESSION['logged_user'])) {
-    if(isset($_POST['submit']) {
-      
+  if(isset($_SESSION['logged_admin'])) {
+    if(isset($_POST["submit"])) {
+      $tovar = R::dispense('ordersmain');
+      $tovar['name'] = $_POST['name'];
+      $tovar['description'] = $_POST['description'];
+      $tovar['price'] = $_POST['price'];
+      R::store($tovar);
     }
 ?>
 
@@ -14,7 +18,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Добавить товар</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css">
     <link rel="stylesheet" href="../styles/customstyle.css" type="text/css">
@@ -35,7 +39,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Администрирование</a>
+      <a class="navbar-brand" href="admin.php">Администрирование</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,17 +68,17 @@
       <h1>Добавление товара</h1>
       <div class="form-group">
           <label for="name">Наименование</label>
-          <input type="text" class="form-control" name="name" placeholder="Наименование товара">
+          <input type="text" class="form-control" name="name" placeholder="Наименование товара" required>
       </div>
       <div class="form-group">
         <label for="description">Описание</label>
-        <input type="text" class="form-control" name="description" placeholder="Описание товара">
+        <input type="text" class="form-control" name="description" placeholder="Цена за тысячу просмотров 1500 рублей" required>
       </div>
       <div class="form-group">
           <label for="price">Стоимость</label>
-          <input type="text" class="form-control" name="price" placeholder="Цена">
+          <input type="text" class="form-control" name="price" placeholder="Цена" required>
       </div>
-      <button type="submit" class="btn btn-success btn-outline">Добавить товар </button>
+      <button name="submit" type="submit" class="btn btn-success btn-outline">Добавить товар </button>
     </form>
   </center>
 </div>

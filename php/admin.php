@@ -1,8 +1,16 @@
 <?php
   require 'db.php';
-  if(isset($_SESSION['logged_user'])) {
+  if(isset($_SESSION['logged_admin'])) {
     $orders = R::findAll('orders');
-    $ordersMain = R::findAll('ordersMain');
+    if(isset($_POST['submit'])) {
+      $order = R::findOne('orders', 'id = ?', array($_POST['id']));
+      $order['status'] = 'Выполнен';
+      R::store($order);
+    } else if(isset($_POST['process'])) {
+      $order = R::findOne('orders', 'id = ?', array($_POST['id']));
+      $order['status'] = 'Выполняется';
+      R::store($order);
+    }
 ?>
 
   <!DOCTYPE html>
@@ -12,7 +20,7 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title></title>
+      <title>Список заказов</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css">
       <link rel="stylesheet" href="../styles/customstyle.css" type="text/css">
@@ -33,7 +41,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Администрирование</a>
+        <a class="navbar-brand" href="admin.php">Администрирование</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,34 +65,54 @@
 
 
   <div class="col-lg-12">
+    <center>
+      <form action="" method="post">
+        <h4>Изменить состояние:</h4>
+        <select name="id">
+          <?php
+            foreach($orders as $order) {
+              $orderInMain = R::findOne("ordersmain", "id = ?", array($order['typeid']));
+              $orderName = $orderInMain['name'];
+              echo '<option value="'.$order['id'].'">Заказ №'.$order['id'].'. Тип услуги: '.$orderName.'</option>';
+            }
+          ?>
+        </select>
+        <center>
+          <button style="margin-top: 10px;" name="submit" type="submit" class="btn btn-success btn-outline">Выполнен </button>
+          <button style="margin-top: 10px;" name="process" type="submit" class="btn btn-info btn-outline">Выполняется </button>
+        </center>
+      </form>
+    </center>
+    <hr>
     <table style="width:100%">
-      <tr>
-        <th>Ссылка</th>
-        <th>id</th>
-        <th>Наименование услуги</th>
-        <th>Статус заказа</th>
-      </tr>
-      <!-- <tr>
-        <td><a href="https://instagram.com/dierk_hackir">instagram.com/dierk_hackir</a></td>
-        <td>Накрутка подписчиков 1</td>
-        <td>Не выполнен <span><a href="#">Изменить</a></span></td>
-      </tr>
-      <tr>
-        <td><a href="https://vk.com/dierk">vk.com/dierk</a></td>
-        <td>Накрутка подписчиков 2</td>
-        <td>Выполнен <span><a href="#">Изменить</a></span></td>
-      </tr> -->
-      <?php
-        foreach($orders as $order) {
-          $orderInMain = R::findOne("ordersMain", "id = ?", array($order['typeid']));
-          $orderName = $orderInMain['name'];
-          echo '<tr><td><a href="'.$order['link'].'">'.$order['link'].'</a></td>';
-          echo '<td>'.$order['id'].'</td>';
-          echo '<td>'.$orderName.'</td>';
-          echo '<td>'.$order['status'].' – <span><a href="changeStatus.php">изменить</a></span></td></tr>';
-        }
+        <tr>
+          <th>Ссылка</th>
+          <th>id</th>
+          <th>Наименование услуги</th>
+          <th>Статус заказа</th>
+        </tr>
+        <!-- <tr>
+          <td><a href="https://instagram.com/dierk_hackir">instagram.com/dierk_hackir</a></td>
+          <td>Накрутка подписчиков 1</td>
+          <td>Не выполнен <span><a href="#">Изменить</a></span></td>
+        </tr>
+        <tr>
+          <td><a href="https://vk.com/dierk">vk.com/dierk</a></td>
+          <td>Накрутка подписчиков 2</td>
+          <td>Выполнен <span><a href="#">Изменить</a></span></td>
+        </tr> -->
+        <?php
+          foreach($orders as $order) {
+            $orderInMain = R::findOne("ordersmain", "id = ?", array($order['typeid']));
+            $orderName = $orderInMain['name'];
+            echo '<tr><td><a href="'.$order['link'].'">'.$order['link'].'</a></td>';
+            echo '<td>'.$order['id'].'</td>';
+            echo '<td>'.$orderName.'</td>';
+            echo '<td>'.$order['status'];
+          }
         ?>
     </table>
+    <hr>
   </div>
 
 
