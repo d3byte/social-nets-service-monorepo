@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&subset=cyrillic');
+
 .v-center{
   margin-top:100px;
 }
@@ -23,4 +25,26 @@ html{
 
 .yt{
 
+}
+
+.right-bar, .left-bar {
+    border: 1px solid black;
+}
+
+#numbers{
+  background-color: black;
+  color:white;
+}
+
+#results{
+  height:90vh;
+}
+
+#about{
+  margin-bottom: 100px;
+}
+
+.semi-tr{
+  color:rgba(255, 255, 255, 0.5); !important:
+  font-weight:400 !important;
 }
