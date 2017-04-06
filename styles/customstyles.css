@@ -28,7 +28,27 @@ table tr {
 }
 
 .yt{
+display:none;
+}
 
+.yt_serv{
+  display: none;
+}
+
+.inst{
+display: none;
+}
+
+.inst_serv{
+  display: none;
+}
+
+.twt{
+display: none;
+}
+
+.twt_serv{
+  display: none;
 }
 
 .right-bar, .left-bar {
