@@ -3,7 +3,7 @@ $(document).ready(function(){
   $("#btn_yt").on("click", function(){
     $(".inst").hide();
     $(".twt").hide();
-    $("#youtube_services").show()
+    $("#youtube_services").show();
   })
   $("#btn1").on("click", function(){
     $("#chs_yt").show();

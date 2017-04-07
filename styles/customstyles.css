@@ -80,7 +80,11 @@ display: none;
 }
 
 #footer{
-  height:30vh;
+  height:10vh;
   background-color: black;
+  color:white;
+}
+
+#landhref{
   color:white;
 }
