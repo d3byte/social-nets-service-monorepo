@@ -3,9 +3,9 @@
   require 'libs/Actions.class.php';
   if(isset($_SESSION['logged_user'])) {
     $user = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
-    $orders = R::findAll('ordersmain');
-    if(isset($_POST['submit'])) {
-      Actions::addOrder();
+    if(isset($_POST['pay'])) {
+      addBalance();
+      logAddBalance();
     }
 ?>
 
@@ -16,7 +16,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo $shopName; ?> – Новый заказ</title>
+    <title><?php echo $shopName; ?> – Пополнение баланса</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css">
     <link rel="stylesheet" href="../styles/customstyle.css" type="text/css">
@@ -43,11 +43,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="balance.php"> Счёт <?php echo $user['balance']; ?> ₽ </a></li>
+                    <li class="active"><a href="balance.php"> Счёт <?php echo $user['balance']; ?> ₽ <span class="sr-only">(current)</span></a></li>
                     <li><a href="profile.php"> История </a></li>
-                    <li class="active"><a href="market.php"> Новый заказ <span class="sr-only">(current)</span></a></li>
+                    <li><a href="market.php"> Новый заказ </a></li>
                     <li><a href="support.php"> Поддержка </a></li>
-                    <li><a href="logout.php">Выйти</a></li>
+                    <li><a href="admin_login.php">Выйти</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -56,37 +56,48 @@
     </nav>
 
     <main>
-      <center>
-      <div class="col-lg-12">
-        <h1> Создание заказа </h1>
-      </div>
-      <div class="col-lg-12">
-        <h2> Выберите услугу: </h2>
-      </div>
-      <form action="" method="post">
+        <div class="col-lg-12">
+            <center>
+                <h1> Пополнение баланса: </h1>
+                <p> Выберите платежную систему, укажите сумму и нажмите "оплатить", далее следуйте инструкциям платежной системы. </p>
+                <hr>
+        </div>
 
-        <?php
-          foreach($orders as $order) {
-            echo '<div class="form-group">';
-            echo '<p><input type="radio" name="order" value="'.$order['id'].'" id="'.$order['id'].'">';
-            echo ' <label for="'.$order['id'].'">'.$order['name'].'</label></p>';
-            echo '<p>'.$order['description'].'</p><hr>';
-            echo '</div>';
-          }
-        ?>
-        <center>
-          <div class="form-group">
-            <input type="text" class="form-control" name="link" placeholder="Ссылка на соц.сеть, для которой вы заказываете услугу" required>
-          </div>
-          <button style="margin-top: 10px;" name="submit" type="submit" class="btn btn-success btn-outline">Заказать </button>
+
+        <div class="col-lg-4"></div>
+
+        <div class="col-lg-4">
+            <center>
+                <form action="" method="post">
+                  <div class="form-group">
+                      <div class="radio active">
+                          <label><input type="radio" name="optradio" value="yandex" id="yandex">Яндекс.Деньги</label>
+                      </div>
+                      <div class="radio">
+                          <label><input type="radio" name="optradio" value="webmoney" id="webmoney">WebMoney</label>
+                      </div>
+                      <div class="radio">
+                          <label><input type="radio" name="optradio" value="qiwi" id="qiwi">Qiwi</label>
+                      </div>
+                      <div class="radio">
+                          <label><input type="radio" name="optradio" value="bank" id="bank">Банковские карты</label>
+                      </div>
+                      <label for="price">Сумма пополнения, руб.</label>
+                      <input type="number" class="form-control" name="balance" min="1" ></input>
+                      <br>
+                      <button type="submit" name="pay" class="btn btn-success btn-outline">Оплатить</button>
+                      <button class="btn btn-danger btn-outline">Отмена</button>
+                  </div>
+                </form>
+            </center>
+        </div>
+        <div class="col-lg-4"></div>
         </center>
-      </form>
-    </center>
     </main>
     <script src="https://cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js "></script>
-    <script src="../js/buttons.js"
     <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js "></script>
 </body>
+
 </html>
 <?php
   } else header('Location: signin.php');

@@ -1,16 +1,12 @@
 <?php
   require 'db.php';
+  require 'libs/Actions.class.php';
   if(isset($_SESSION['logged_admin'])) {
     $orders = R::findAll('orders');
-    if(isset($_POST['submit'])) {
-      $order = R::findOne('orders', 'id = ?', array($_POST['id']));
-      $order['status'] = 'Выполнен';
-      R::store($order);
-    } else if(isset($_POST['process'])) {
-      $order = R::findOne('orders', 'id = ?', array($_POST['id']));
-      $order['status'] = 'Выполняется';
-      R::store($order);
-    }
+    if(isset($_POST['submit']))
+      Actions::orderDone();
+    else if(isset($_POST['process']))
+      Actions::orderInProgress();
 ?>
 
   <!DOCTYPE html>

@@ -1,18 +1,9 @@
 <?php
   require "db.php";
-
+  require 'libs/Actions.class.php';
   $errors = [];
   if(isset($_POST["submit"])) {
-    $user = R::findOne("admins", "login = ?", array($_POST["login"]));
-    if($user) {
-      // Логин введен правильно
-      if($_POST["password"] == $user->password) {
-        $_SESSION["logged_admin"] = $user;
-        header("Location: admin.php");
-      } else
-        $errors[] = '<span style="color:red;">Неверный логин или пароль!</span>';
-    } else
-      $errors[] = '<span style="color:red;">Неверный логин или пароль!</span>';
+    Actions::adminLogin();
   }
 ?>
 
@@ -37,7 +28,7 @@
   <div class="col-lg-4"></div> <!-- для центровки -->
   <div class="col-lg-4">
     <center>
-      <h1 style="margin-bottom:150px;"> Вход в панель администрирования *project_name* </h1>
+      <h1 style="margin-bottom:150px;"> Вход в панель администрирования <?php echo $shopName; ?> </h1>
       <h4><?php echo array_shift($errors); ?></h4>
       <form action="" method="post">
         <div class="form-group">

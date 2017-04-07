@@ -1,18 +1,9 @@
 <?php
   require 'db.php';
-
+  require 'libs/Actions.class.php';
   $errors = [];
   if(isset($_POST['submit'])) {
-    $user = R::findOne('users', 'login = ?', array($_POST['login']));
-    if($user) {
-      // check password
-      if(password_verify($_POST['password'], $user->password)) {
-        $_SESSION['logged_user'] = $user;
-        header("Location: profile.php");
-      } else
-        $errors[] = '<span style="color:red;">Введенный пароль неверный!</span>';
-    } else
-      $errors[] = '<span style="color:red;">Пользователь с таким логином не найден!</span>';
+    Actions::signIn();
   }
 ?>
 
@@ -37,7 +28,7 @@
   <div class="col-lg-4"></div> <!-- для центровки -->
   <div class="col-lg-4">
     <center>
-      <h1 style="margin-bottom:190px;"> Вход в *project_name* </h1>
+      <h1 style="margin-bottom:190px;"> Вход в <?php echo $shopName; ?> </h1>
       <h4><?php echo array_shift($errors) ?></h4>
       <form action="" method="post">
         <div class="form-group">
@@ -48,7 +39,7 @@
             <label for="pass">Ваш пароль</label>
             <input type="password" class="form-control" id="pass" name="password" placeholder="Пароль">
         </div>
-        <p> Нет аккаунта?  <span><a href="signup.php">Зарегистрировать</a></p>
+        <p> Нет аккаунта?  <span><a href="signup.php">Зарегистрироваться</a></p>
         <button name="submit" type="submit" class="btn btn-success btn-outline">Войти</button>
       </form>
 

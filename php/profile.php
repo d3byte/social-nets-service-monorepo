@@ -1,7 +1,9 @@
 <?php
   require 'db.php';
+  require 'libs/Actions.class.php';
   if(isset($_SESSION['logged_user'])) {
     $actions = R::findAll('userlogs', 'userid = ?', array($_SESSION['logged_user']['id']));
+    $user = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
 ?>
 
 <!DOCTYPE html>
@@ -32,15 +34,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">*project_name*</a>
+      <a class="navbar-brand" href="#"><?php echo $shopName; ?></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="balance.php"> Счёт *x*₽ </a></li>
-        <li><a href="#">Заказы <span class="sr-only">(current)</span></a></li>
-        <li class="active"><a href="profile.html"> История </a></li>
+        <li><a href="balance.php"> Счёт <?php echo $user['balance']; ?> ₽ </a></li>
+        <li class="active"><a href="profile.html"> История <span class="sr-only">(current)</span></a></li>
         <li><a href="market.php"> Новый заказ </a></li>
         <li><a href="support.php"> Поддержка </a></li>
         <li><a href="logout.php">Выйти</a></li>

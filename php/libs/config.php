@@ -4,4 +4,6 @@
   $dbName = "panda"; // Имя базы данных
   $dbLogin = "panda"; // Логин PHPMyAdmin
   $dbPassword = "iZerrio123"; // Пароль PHPMyAdmin
+  //
+  $shopName = '*projectName*'; // Название магазина
 ?>

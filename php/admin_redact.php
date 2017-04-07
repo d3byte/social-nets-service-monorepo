@@ -1,16 +1,11 @@
 <?php
   require 'db.php';
+  require 'libs/Actions.class.php';
   if(isset($_SESSION['logged_admin'])) {
     if(isset($_POST["submit"])) {
-      $tovar = R::findOne('ordersmain', 'name = ?', array($_POST['tovar']));
-      $tovar['name'] = $_POST['name'];
-      $tovar['description'] = $_POST['description'];
-      if(isset($_POST['price']))
-        $tovar['price'] = $_POST['price'];
-      R::store($tovar);
+      Actions::redactGood();
     } else if(isset($_POST["delete"])) {
-        $tovar = R::findOne('ordersmain', 'name = ?', array($_POST['tovar']));
-        R::trash($tovar);
+        Actions::deleteGood();
     }
     $goods = R::findAll("ordersmain");
 ?>

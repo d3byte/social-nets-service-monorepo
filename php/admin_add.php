@@ -1,13 +1,9 @@
 <?php
   require 'db.php';
-
+  require 'libs/Actions.class.php';
   if(isset($_SESSION['logged_admin'])) {
     if(isset($_POST["submit"])) {
-      $tovar = R::dispense('ordersmain');
-      $tovar['name'] = $_POST['name'];
-      $tovar['description'] = $_POST['description'];
-      $tovar['price'] = $_POST['price'];
-      R::store($tovar);
+      Actions:addGood();
     }
 ?>
 

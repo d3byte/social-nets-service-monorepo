@@ -1,6 +1,6 @@
 <?php
   require 'db.php';
-
+  require 'libs/Actions.class.php';
   $errors = [];
   if(isset($_POST['submit'])) {
     if($_POST['password'] != $_POST['password2'])
@@ -10,17 +10,8 @@
     else if(R::count('users', 'email = ?', array($_POST['email'])) > 0)
       $errors[] = '<span style="color:red;">Пользователь с такой почтой уже существует!</span>';
     else {
-      $user = R::dispense('users');
-      $user->login = $_POST['login'];
-      $user->email = $_POST['email'];
-      $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-      R::store($user);
-      $usid = R::findOne('users', 'login = ?', array($_POST['login']));
-      $action = R::dispense('userlogs');
-      $action->userid = $usid['id'];
-      $action->action = 'Пользователь создан';
-      $action->date = date("Y-m-d H:i:s");
-      R::store($action);
+      Actions::signUp();
+      Actions::logSignUp();
       header('Location: signin.php');
     }
   }
@@ -47,7 +38,7 @@
   <div class="col-lg-4"></div> <!-- для центровки -->
   <div class="col-lg-4">
     <center>
-      <h1 style="margin-bottom:190px;"> Регистрация на *project_name* </h1>
+      <h1 style="margin-bottom:190px;"> Регистрация на <?php echo $shopName; ?> </h1>
       <h4><?php echo array_shift($errors);?></h4>
       <form action="" method="post">
         <div class="form-group">
