@@ -31,17 +31,17 @@
     }
 
     public function logAddBalance() {
-      $usid = R::findOne('users', 'login = ?', array($_POST['login']));
       $action = R::dispense('userlogs');
-      $action->userid = $usid['id'];
+      $action->userid = $_SESSION['logged_user']['id'];
       $action->action = 'Пополнение баланса на '.$_POST['balance'].' рублей';
       $action->date = date("Y-m-d H:i:s");
       R::store($action);
     }
 
     public function addBalance() {
-      $user = R::findOne('users', 'login = ?', array($_POST['login']));
-      $user->balance += $_POST['balance'];
+      $userB = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
+      $userB->balance += $_POST['balance'];
+      R::store($userB);
     }
 
     public function addOrder() {

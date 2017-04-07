@@ -4,8 +4,9 @@
   if(isset($_SESSION['logged_user'])) {
     $user = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
     if(isset($_POST['pay'])) {
-      addBalance();
-      logAddBalance();
+      Actions::addBalance();
+      Actions::logAddBalance();
+      header('Location: profile.php');
     }
 ?>
 
@@ -83,7 +84,7 @@
                           <label><input type="radio" name="optradio" value="bank" id="bank">Банковские карты</label>
                       </div>
                       <label for="price">Сумма пополнения, руб.</label>
-                      <input type="number" class="form-control" name="balance" min="1" ></input>
+                      <input type="number" id="price" class="form-control" name="balance" min="1" ></input>
                       <br>
                       <button type="submit" name="pay" class="btn btn-success btn-outline">Оплатить</button>
                       <button class="btn btn-danger btn-outline">Отмена</button>

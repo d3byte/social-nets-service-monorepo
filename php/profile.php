@@ -62,7 +62,7 @@
       <?php
         foreach($actions as $action) {
           echo '<tr><td>'.$action['date'].'</td>';
-          echo '<td>'.$action['action'].'</td></tr';
+          echo '<td>'.$action['action'].'</td></tr>';
         }
       ?>
     </table>
