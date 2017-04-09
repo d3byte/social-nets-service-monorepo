@@ -33,7 +33,7 @@
     public function logAddBalance() {
       $action = R::dispense('userlogs');
       $action->userid = $_SESSION['logged_user']['id'];
-      $action->action = 'Пополнение баланса на '.$_POST['balance'].' рублей';
+      $action->action = 'Пополнение баланса на '.$_POST['balance'].' ₽';
       $action->date = date("Y-m-d H:i:s");
       R::store($action);
     }
@@ -41,6 +41,21 @@
     public function addBalance() {
       $userB = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
       $userB->balance += $_POST['balance'];
+      R::store($userB);
+    }
+
+    public function logBuyItem() {
+      $orderN = R::findOne('ordersmain', 'id = ?', array($_POST['order']));
+      $action = R::dispense('userlogs');
+      $action->userid = $_SESSION['logged_user']['id'];
+      $action->action = 'Покупка '.$orderN['name'].' на сумму '.$orderN['price'].'₽';
+      $action->date = date("Y-m-d H:i:s");
+      R::store($action);
+    }
+
+    public function substractBalance() {
+      $userB = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
+      $userB->balance -= $_POST['balance'];
       R::store($userB);
     }
 
