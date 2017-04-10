@@ -65,15 +65,7 @@
       </div>
       <form action="" method="post">
 
-        <?php
-          foreach($orders as $order) {
-            echo '<div class="form-group">';
-            echo '<p><input type="radio" name="order" value="'.$order['id'].'" id="'.$order['id'].'">';
-            echo ' <label for="'.$order['id'].'">'.$order['name'].'</label></p>';
-            echo '<p>'.$order['description'].'</p><hr>';
-            echo '</div>';
-          }
-        ?>
+
         <center>
           <div class="form-group">
             <input type="text" class="form-control" name="link" placeholder="Ссылка на соц.сеть, для которой вы заказываете услугу" required>
@@ -83,11 +75,20 @@
       </form>
     </center>
     </main>
-    <script src="https://cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js "></script>
-    <script src="../js/buttons.js"
-    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script src="../js/buttons.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
 <?php
   } else header('Location: signin.php');
+?>
+<?php
+  foreach($orders as $order) {
+    echo '<div class="form-group">';
+    echo '<p><input type="radio" name="order" value="'.$order['id'].'" id="'.$order['id'].'">';
+    echo ' <label for="'.$order['id'].'">'.$order['name'].'</label></p>';
+    echo '<p>'.$order['description'].'</p><hr>';
+    echo '</div>';
+  }
 ?>
