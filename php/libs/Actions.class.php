@@ -87,6 +87,8 @@
       $tovar['description'] = $_POST['description'];
       if(isset($_POST['price']))
         $tovar['price'] = $_POST['price'];
+      if(isset($_POST['category']))
+        $tovar['categoryid'] = $_POST['category'];
       R::store($tovar);
     }
 
@@ -100,6 +102,7 @@
       $tovar['name'] = $_POST['name'];
       $tovar['description'] = $_POST['description'];
       $tovar['price'] = $_POST['price'];
+      $tovar['categoryid'] = $_POST['category'];
       R::store($tovar);
     }
 

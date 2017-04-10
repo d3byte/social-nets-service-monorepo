@@ -2,8 +2,9 @@
   require 'db.php';
   require 'libs/Actions.class.php';
   if(isset($_SESSION['logged_admin'])) {
+    $categories = R::findAll('categories');
     if(isset($_POST["submit"])) {
-      Actions:addGood();
+      Actions::addGood();
     }
 ?>
 
@@ -73,6 +74,16 @@
       <div class="form-group">
           <label for="price">Стоимость</label>
           <input type="text" class="form-control" name="price" placeholder="Цена" required>
+      </div>
+      .<div class="form-group">
+        <label for="cat">Категория</label>
+        <select id="cat" name="category">
+          <?php
+            foreach($categories as $category) {
+              echo '<option value="'.$category['id'].'">'.$category['name'].'</option>';
+            }
+          ?>
+        </select>
       </div>
       <button name="submit" type="submit" class="btn btn-success btn-outline">Добавить товар </button>
     </form>

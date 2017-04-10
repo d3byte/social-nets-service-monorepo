@@ -2,6 +2,7 @@
   require 'db.php';
   require 'libs/Actions.class.php';
   if(isset($_SESSION['logged_admin'])) {
+    $categories = R::findAll('categories');
     if(isset($_POST["submit"])) {
       Actions::redactGood();
     } else if(isset($_POST["delete"])) {
@@ -88,6 +89,16 @@
       <div class="form-group">
           <label for="price">Стоимость</label>
           <input type="text" class="form-control" name="price" placeholder="9.99"> <!--  подставляется его цена  -->
+      </div>
+      .<div class="form-group">
+        <label for="cat">Категория</label>
+        <select id="cat" name="category">
+          <?php
+            foreach($categories as $category) {
+              echo '<option value="'.$category['id'].'">'.$category['name'].'</option>';
+            }
+          ?>
+        </select>
       </div>
       <button name="submit" class="btn btn-success btn-outline" data-toggle="modal" data-target="#myModal2">Обновить выбранный товар </button>
       <button name="delete" class="btn btn-danger btn-outline" data-toggle="modal" data-target="#myModal">Удалить выбранный товар </button>
