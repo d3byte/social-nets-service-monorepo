@@ -67,7 +67,6 @@
                     <li><a href="balance.php"> Счёт <?php echo $user['balance']; ?> ₽ </a></li>
                     <li><a href="profile.php"> История </a></li>
                     <li class="active"><a href="market.php"> Новый заказ <span class="sr-only">(current)</span></a></li>
-                    <li><a href="support.php"> Поддержка </a></li>
                     <li><a href="logout.php">Выйти</a></li>
                 </ul>
             </div>
