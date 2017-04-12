@@ -18,13 +18,14 @@
     $services[] = R::find('ordersmain', 'categoryid = ?', [11]);
     $services[] = R::find('ordersmain', 'categoryid = ?', [12]);
     if(isset($_POST['order'])) {
+      $errors = [];
       if(Actions::checkBalance()) {
         Actions::addOrder();
         Actions::substractBalance();
         Actions::logSubstraction();
+        $errors[] = '<h4 style="color:green;">Товар успешно оплачен!</h4>';
       } else {
-        $errors = [];
-        $errors[] = "Недостаточно средств!";
+        $errors[] = '<h3 style="color:red;">Недостаточно средств на счету!</h3>';
       }
     }
 ?>
@@ -80,7 +81,7 @@
           <div class="col-lg-12">
               <?php
                 if(isset($errors))
-                  echo '<h3 style="color:red;">'.array_shift($errors).'</h3>';
+                  echo array_shift($errors);
               ?>
               <h1> Создание заказа </h1>
           </div>
@@ -214,8 +215,8 @@
                     ?>
                   </div>
               </div>
-              <input class="form-group" type="text" required name="link" placeholder="Ссылка на соц.сеть" id="link" style="display:none;">
-              <input class="form-group" type="number" required name="amount" placeholder="Кол-во" id="amount" style="display:none;">
+              <input class="form-group" type="text" required name="link" placeholder="Ссылка на соц.сеть" id="link" style="display:none;"><br>
+              <input class="form-group" type="number" required name="amount" placeholder="Кол-во" id="amount" style="display:none;"><br>
               <button class="btn btn-success btn-outline" type="submit" name="order" id="order" style="display:none">Заказать</button>
           </form>
       </center>

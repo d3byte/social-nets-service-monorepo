@@ -111,15 +111,16 @@
     }
 
     public function checkBalance() {
+      $userB = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
       $tovar = R::findOne('ordersmain', 'id = ?', array($_POST['tovar']));
-      if($_SESSION['logged_user']['balance'] - $tovar['price'] * $_POST['amount'] >= 0)
+      if($userB->balance - $tovar['price'] * $_POST['amount'] >= 0)
         return true;
       return false;
     }
 
     public function addOrder() {
       $zakaz = R::dispense('orders');
-      $typeid = R::findOne('ordersmain', 'id = ?', array($_POST['order']));
+      $typeid = R::findOne('ordersmain', 'id = ?', array($_POST['tovar']));
       $zakaz->typeid = $typeid['id'];
       $zakaz->link = $_POST['link'];
       $zakaz->status = 'Выполняется';
@@ -141,7 +142,8 @@
       $tovar = R::findOne('ordersmain', 'id = ?', array($_POST['tovar']));
       $action = R::dispense('userlogs');
       $action->userid = $_SESSION['logged_user']['id'];
-      $action->action = 'Покупка услуги "'.$tovar['name'].'". Списание'.$tovar['price']*$_POST['amount'].'₽ с баланса.';
+      $price = $tovar['price']*$_POST['amount'];
+      $action->action = 'Покупка услуги "'.$tovar['name'].'". Списание '.$price.'₽ с баланса.';
       $action->date = date("Y-m-d H:i:s");
       R::store($action);
     }
