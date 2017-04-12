@@ -34,7 +34,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><?php echo $shopName; ?></a>
+      <a class="navbar-brand" href="profile.php"><?php echo $shopName; ?></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
