@@ -38,6 +38,12 @@
       R::store($action);
     }
 
+    public function checkForNums() {
+      if(gettype($_POST['balance']) == 'integer')
+        return true;
+      return false;
+    }
+
     public function addBalance() {
       $userB = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
       $userB->balance += $_POST['balance'];

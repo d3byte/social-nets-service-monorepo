@@ -4,9 +4,14 @@
   if(isset($_SESSION['logged_user'])) {
     $user = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
     if(isset($_POST['pay'])) {
-      Actions::addBalance();
-      Actions::logAddBalance();
-      header('Location: profile.php');
+      if(Actions::checkForNums()) {
+        Actions::addBalance();
+        Actions::logAddBalance();
+        header('Location: profile.php');
+      } else {
+        $errors = [];
+        $errors[] = '<h4 style="color:red;">Кол-во денег может быть только целочисленным числом!</h4>';
+      }
     }
 ?>
 
@@ -58,6 +63,10 @@
     <main>
         <div class="col-lg-12">
             <center>
+              <?php
+                if(isset($errors))
+                  echo array_shift($errors);
+              ?>
                 <h1> Пополнение баланса: </h1>
                 <p> Выберите платежную систему, укажите сумму и нажмите "оплатить", далее следуйте инструкциям платежной системы. </p>
                 <hr>
@@ -83,7 +92,7 @@
                           <label><input type="radio" name="optradio" value="bank" id="bank">Банковские карты</label>
                       </div>
                       <label for="price">Сумма пополнения, руб.</label>
-                      <input type="number" id="price" class="form-control" name="balance" min="1" ></input>
+                      <input type="number" id="price" class="form-control" name="balance" min="1" required></input>
                       <br>
                       <button type="submit" name="pay" class="btn btn-success btn-outline">Оплатить</button>
                       <button class="btn btn-danger btn-outline">Отмена</button>
