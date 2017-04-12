@@ -32,7 +32,7 @@
     <title><?php echo $shopName; ?> – Новый заказ</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css">
-    <link rel="stylesheet" href="../styles/customstyle.css" type="text/css">
+    <link rel="stylesheet" href="../styles/customstyles.css" type="text/css">
     <link rel="stylesheet" href="../styles/buttons.css" type="text/css">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="../bootstrap/font-awesome/css/font-awesome.css" type="text/css">
