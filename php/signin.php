@@ -29,15 +29,15 @@
   <div class="col-lg-4">
     <center>
       <h1 style="margin-bottom:190px;"> Вход в <?php echo $shopName; ?> </h1>
-      <h4><?php echo array_shift($errors) ?></h4>
+      <h4><?php echo array_shift($errors); ?></h4>
       <form action="" method="post">
         <div class="form-group">
             <label for="nick">Ваш логин</label>
-            <input type="text" class="form-control" id="nick" name="login" placeholder="Логин">
+            <input type="text" class="form-control" id="nick" name="login" placeholder="Логин" required>
         </div>
         <div class="form-group">
             <label for="pass">Ваш пароль</label>
-            <input type="password" class="form-control" id="pass" name="password" placeholder="Пароль">
+            <input type="password" class="form-control" id="pass" name="password" placeholder="Пароль" required>
         </div>
         <p> Нет аккаунта?  <span><a href="signup.php">Зарегистрироваться</a></p>
         <button name="submit" type="submit" class="btn btn-success btn-outline">Войти</button>

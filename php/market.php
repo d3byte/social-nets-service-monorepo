@@ -17,8 +17,15 @@
     $services[] = R::find('ordersmain', 'categoryid = ?', [10]);
     $services[] = R::find('ordersmain', 'categoryid = ?', [11]);
     $services[] = R::find('ordersmain', 'categoryid = ?', [12]);
-    if(isset($_POST['submit'])) {
-      Actions::addOrder();
+    if(isset($_POST['order'])) {
+      if(Actions::checkBalance()) {
+        Actions::addOrder();
+        Actions::substractBalance();
+        Actions::logSubstraction();
+      } else {
+        $errors = [];
+        $errors[] = "Недостаточно средств!";
+      }
     }
 ?>
 
@@ -71,6 +78,10 @@
     <main>
       <center>
           <div class="col-lg-12">
+              <?php
+                if(isset($errors))
+                  echo '<h3 style="color:red;">'.array_shift($errors).'</h3>';
+              ?>
               <h1> Создание заказа </h1>
           </div>
           <div class="col-lg-12">
@@ -203,6 +214,8 @@
                     ?>
                   </div>
               </div>
+              <input class="form-group" type="text" required name="link" placeholder="Ссылка на соц.сеть" id="link" style="display:none;">
+              <input class="form-group" type="number" required name="amount" placeholder="Кол-во" id="amount" style="display:none;">
               <button class="btn btn-success btn-outline" type="submit" name="order" id="order" style="display:none">Заказать</button>
           </form>
       </center>

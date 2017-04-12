@@ -53,22 +53,6 @@
       R::store($action);
     }
 
-    public function substractBalance() {
-      $userB = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
-      $userB->balance -= $_POST['balance'];
-      R::store($userB);
-    }
-
-    public function addOrder() {
-      $zakaz = R::dispense('orders');
-      $typeid = R::findOne('ordersmain', 'id = ?', array($_POST['order']));
-      $zakaz->typeid = $typeid['id'];
-      $zakaz->link = $_POST['link'];
-      $zakaz->status = 'Выполняется';
-      $zakaz->amount = 1;
-      R::store($zakaz);
-    }
-
     public function orderDone() {
       $order = R::findOne('orders', 'id = ?', array($_POST['id']));
       $order['status'] = 'Выполнен';
@@ -122,14 +106,44 @@
     public function renderServices($arr, $index) {
       foreach($arr[$index] as $service) {
         echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
+        echo '<input type="radio" name="tovar" id="'.$service['id'].'" value="'.$service['id'].'"><hr>';
       }
     }
 
-    public function renderService($arr, $index) {
-      $service = $arr[$index];
-      echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-      echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
+    public function checkBalance() {
+      $tovar = R::findOne('ordersmain', 'id = ?', array($_POST['tovar']));
+      if($_SESSION['logged_user']['balance'] - $tovar['price'] * $_POST['amount'] >= 0)
+        return true;
+      return false;
+    }
+
+    public function addOrder() {
+      $zakaz = R::dispense('orders');
+      $typeid = R::findOne('ordersmain', 'id = ?', array($_POST['order']));
+      $zakaz->typeid = $typeid['id'];
+      $zakaz->link = $_POST['link'];
+      $zakaz->status = 'Выполняется';
+      if(isset($_POST['amount']))
+        $zakaz->amount = $_POST['amount'];
+      else
+        $zakaz->amount = 1;
+      R::store($zakaz);
+    }
+
+    public function substractBalance() {
+      $tovar = R::findOne('ordersmain', 'id = ?', array($_POST['tovar']));
+      $userB = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
+      $userB->balance -= $tovar['price'] * $_POST['amount'];
+      R::store($userB);
+    }
+
+    public function logSubstraction() {
+      $tovar = R::findOne('ordersmain', 'id = ?', array($_POST['tovar']));
+      $action = R::dispense('userlogs');
+      $action->userid = $_SESSION['logged_user']['id'];
+      $action->action = 'Покупка услуги "'.$tovar['name'].'". Списание'.$tovar['price']*$_POST['amount'].'₽ с баланса.';
+      $action->date = date("Y-m-d H:i:s");
+      R::store($action);
     }
   }
 ?>
