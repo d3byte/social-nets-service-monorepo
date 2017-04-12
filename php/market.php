@@ -79,7 +79,7 @@
               <button class="btn btn-default btn-outline" id="btn_inst">Instagram</button>
               <hr>
           </div>
-          <div class="col-lg-12">
+          <div class="col-lg-12" id="chs_cat" style="display:none">
               <h2> Выберите категорию услуг: </h2>
           </div>
           <div class="col-lg-12 yt" id="youtube_services">
