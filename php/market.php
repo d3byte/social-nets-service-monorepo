@@ -25,7 +25,7 @@
         Actions::logSubstraction();
         $errors[] = '<h4 style="color:green;">Товар успешно оплачен!</h4>';
       } else {
-        $errors[] = '<h3 style="color:red;">Недостаточно средств на счету!</h3>';
+        $errors[] = '<h4 style="color:red;">Недостаточно средств на счету!</h4>';
       }
     }
 ?>

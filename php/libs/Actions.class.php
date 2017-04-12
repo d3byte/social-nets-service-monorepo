@@ -143,7 +143,7 @@
       $action = R::dispense('userlogs');
       $action->userid = $_SESSION['logged_user']['id'];
       $price = $tovar['price']*$_POST['amount'];
-      $action->action = 'Покупка услуги "'.$tovar['name'].'". Списание '.$price.'₽ с баланса.';
+      $action->action = 'Покупка услуги "'.$tovar['name'].'" в количестве '.$_POST['amount'].' штук. Списание '.$price.'₽ с баланса.';
       $action->date = date("Y-m-d H:i:s");
       R::store($action);
     }
