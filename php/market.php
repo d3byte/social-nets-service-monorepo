@@ -203,7 +203,7 @@
                     ?>
                   </div>
               </div>
-              <button class="btn btn-success btn-outline" type="submit" name="order">Заказать</button>
+              <button class="btn btn-success btn-outline" type="submit" name="order" id="order" style="display:none">Заказать</button>
           </form>
       </center>
     </main>
