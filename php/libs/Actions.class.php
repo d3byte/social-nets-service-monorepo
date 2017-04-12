@@ -118,5 +118,18 @@
       } else
         $errors[] = '<span style="color:red;">Неверный логин или пароль!</span>';
     }
+
+    public function renderServices($arr, $index) {
+      foreach($arr[$index] as $service) {
+        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
+        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
+      }
+    }
+
+    public function renderService($arr, $index) {
+      $service = $arr[$index];
+      echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
+      echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
+    }
   }
 ?>

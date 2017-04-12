@@ -4,6 +4,19 @@
   if(isset($_SESSION['logged_user'])) {
     $user = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
     $orders = R::findAll('ordersmain');
+    // Actions::loadServices();
+    $services[] = R::find('ordersmain', 'categoryid = ?', [1]);
+    $services[] = R::find('ordersmain', 'categoryid = ?', [2]);
+    $services[] = R::find('ordersmain', 'categoryid = ?', [3]);
+    $services[] = R::find('ordersmain', 'categoryid = ?', [4]);
+    $services[] = R::find('ordersmain', 'categoryid = ?', [5]);
+    $services[] = R::find('ordersmain', 'categoryid = ?', [6]);
+    $services[] = R::find('ordersmain', 'categoryid = ?', [7]);
+    $services[] = R::find('ordersmain', 'categoryid = ?', [8]);
+    $services[] = R::find('ordersmain', 'categoryid = ?', [9]);
+    $services[] = R::find('ordersmain', 'categoryid = ?', [10]);
+    $services[] = R::find('ordersmain', 'categoryid = ?', [11]);
+    $services[] = R::find('ordersmain', 'categoryid = ?', [12]);
     if(isset($_POST['submit'])) {
       Actions::addOrder();
     }
@@ -107,79 +120,49 @@
               <div class="col-lg-12 yt yt_serv" id="youtube_views">
                   <div class="form-group">
                     <?php
-                      $services = R::find('ordersmain', 'categoryid = ?', [1]);
-                      foreach ($services as $service) {
-                        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-                        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
-                      }
+                    Actions::renderServices($services, 0);
                     ?>
                   </div>
               </div>
               <div class="col-lg-12 yt yt_serv" id="youtube_subs">
                   <div class="form-group">
                     <?php
-                      $services = R::find('ordersmain', 'categoryid = ?', [2]);
-                      foreach ($services as $service) {
-                        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-                        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
-                      }
+                    Actions::renderServices($services, 1);
                     ?>
                   </div>
               </div>
               <div class="col-lg-12 yt yt_serv" id="youtube_dis">
                   <div class="form-group">
                     <?php
-                      $services = R::find('ordersmain', 'categoryid = ?', [3]);
-                      foreach ($services as $service) {
-                        echo '<hr>'.var_dump($service).'<hr>';
-                        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-                        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
-                      }
+                    Actions::renderServices($services, 2);
                     ?>
                   </div>
               </div>
               <div class="col-lg-12 yt yt_serv" id="youtube_fav">
                   <div class="form-group">
                     <?php
-                      $services = R::find('ordersmain', 'categoryid = ?', [4]);
-                      foreach ($services as $service) {
-                        echo '<hr>'.var_dump($service).'<hr>';
-                        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-                        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
-                      }
+                    Actions::renderServices($services, 3);
                     ?>
                   </div>
               </div>
               <div class="col-lg-12 yt yt_serv" id="youtube_com">
                   <div class="form-group">
                     <?php
-                      $services = R::find('ordersmain', 'categoryid = ?', [5]);
-                      foreach ($services as $service) {
-                        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-                        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
-                      }
+                    Actions::renderServices($services, 4);
                     ?>
                   </div>
               </div>
               <div class="col-lg-12 yt yt_serv" id="youtube_like">
                   <div class="form-group">
                     <?php
-                      $services = R::find('ordersmain', 'categoryid = ?', [6]);
-                      foreach ($services as $service) {
-                        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-                        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
-                      }
+                    Actions::renderServices($services, 5);
                     ?>
                   </div>
               </div>
               <div class="col-lg-12 yt yt_serv" id="youtube_rep">
                   <div class="form-group">
                     <?php
-                      $services = R::find('ordersmain', 'categoryid = ?', [7]);
-                      foreach ($services as $service) {
-                        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-                        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
-                      }
+                    Actions::renderServices($services, 6);
                     ?>
                   </div>
               </div>
@@ -188,55 +171,35 @@
               <div class="col-lg-12 inst inst_serv" id="instagram_subs">
                   <div class="form-group">
                     <?php
-                      $services = R::find('ordersmain', 'categoryid = ?', [8]);
-                      foreach ($services as $service) {
-                        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-                        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
-                      }
+                    Actions::renderServices($services, 7);
                     ?>
                   </div>
               </div>
               <div class="col-lg-12 inst inst_serv" id="instagram_likes">
                   <div class="form-group">
                     <?php
-                      $services = R::find('ordersmain', 'categoryid = ?', [9]);
-                      foreach ($services as $service) {
-                        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-                        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
-                      }
+                    Actions::renderServices($services, 8);
                     ?>
                   </div>
               </div>
               <div class="col-lg-12 inst inst_serv" id="instagram_autolikes">
                   <div class="form-group">
                     <?php
-                      $services = R::find('ordersmain', 'categoryid = ?', [10]);
-                      foreach ($services as $service) {
-                        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-                        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
-                      }
+                    Actions::renderServices($services, 9);
                     ?>
                   </div>
               </div>
               <div class="col-lg-12 inst inst_serv" id="instagram_views">
                   <div class="form-group">
                     <?php
-                      $services = R::find('ordersmain', 'categoryid = ?', [11]);
-                      foreach ($services as $service) {
-                        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-                        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
-                      }
+                    Actions::renderServices($services, 10);
                     ?>
                   </div>
               </div>
               <div class="col-lg-12 inst inst_serv" id="instagram_comments">
                   <div class="form-group">
                     <?php
-                      $services = R::find('ordersmain', 'categoryid = ?', [12]);
-                      foreach ($services as $service) {
-                        echo '<label for="'.$service['id'].'"> '.$service['name'].'<br> '.$service['description'].'</label><br>';
-                        echo '<input type="radio" name="yt_views_radio" id="'.$service['id'].'"><hr>';
-                      }
+                    Actions::renderServices($services, 11);
                     ?>
                   </div>
               </div>
