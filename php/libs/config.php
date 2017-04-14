@@ -6,5 +6,7 @@
   $dbPassword = "iZerrio123"; // Пароль PHPMyAdmin
   // Основные настройки
   $shopName = '*projectName*'; // Название магазина
-  $email = ''; // Почта тех. поддержки, на которую будут приходить вопросы
+  // Free-kassa
+  $merchant_id = '48966'; // id магазина
+  $secret_word = '1fthtsfk'; // Секретное слово
 ?>

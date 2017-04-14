@@ -2,7 +2,11 @@
   require 'db.php';
   require 'libs/Actions.class.php';
   if(isset($_SESSION['logged_user'])) {
-    $user = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
+    if(isset($_POST['pay'])) {
+      $user = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
+      $order_id = $user['id'];
+      $order_amount = $_POST['oa'];
+      $sign = md5($merchant_id.':'.$order_amount.':'.$secret_word.':'.$order_id);
     // if(isset($_POST['pay'])) {
     //   Actions::addBalance();
     //   Actions::logAddBalance();
@@ -16,7 +20,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo $shopName; ?> – Пополнение баланса</title>
+    <title>Подтвердите оплату</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.1.0/octicons.min.css">
     <link rel="stylesheet" href="../styles/customstyle.css" type="text/css">
@@ -57,11 +61,8 @@
     <main>
         <div class="col-lg-12">
             <center>
-              <?php
-                if(isset($errors))
-                  echo array_shift($errors);
-              ?>
                 <h1> Пополнение баланса: </h1>
+                <p> Выберите платежную систему, укажите сумму и нажмите "Оплатить", далее следуйте инструкциям платежной системы. </p>
                 <hr>
         </div>
 
@@ -70,13 +71,28 @@
 
         <div class="col-lg-4">
             <center>
-                <form action="payment.php" method="post">
+                <form action="http://www.free-kassa.ru/merchant/cash.php" method="get">
                   <div class="form-group">
-                      <label for="price">Сумма пополнения, руб.</label>
-                      <input type="number" id="price" class="form-control" name="oa" min="1" required></input>
+                      <div class="radio active">
+                          <label><input required type="radio" name="i" value="45" id="yandex">Яндекс.Деньги</label>
+                      </div>
+                      <div class="radio">
+                          <label><input required type="radio" name="i" value="1" id="webmoney">WebMoney</label>
+                      </div>
+                      <div class="radio">
+                          <label><input required type="radio" name="i" value="63" id="qiwi">Qiwi</label>
+                      </div>
+                      <div class="radio">
+                          <label><input required type="radio" name="i" value="94" id="bank">Банковские карты</label>
+                      </div>
+                      <input type='hidden' name='m' value='<?php echo $merchant_id;?>'>
+                      <input type='hidden' name='o' value='<?php echo $order_id;?>'>
+                      <input type='hidden' name='s' value='<?php echo $sign;?>'>
+                      <input type='hidden' name='lang' value='ru'>
+                      <input type='hidden' name='us_login' value='<?php echo $user['login'];?>'>
+                      <input type="hidden" id="price" name="oa" value='<?php echo $order_amount;?>'>
                       <br>
                       <button type="submit" name="pay" class="btn btn-success btn-outline">Оплатить</button>
-                      <a href="profile.php"><button class="btn btn-danger btn-outline">Отмена</button></a>
                   </div>
                 </form>
             </center>
@@ -84,11 +100,12 @@
         <div class="col-lg-4"></div>
         </center>
     </main>
-    <script src="https://cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.5/js/bootstrap.min.js "></script>
 </body>
 
 </html>
 <?php
+    } else header('Location: balance.php');
   } else header('Location: signin.php');
 ?>
