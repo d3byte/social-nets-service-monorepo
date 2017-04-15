@@ -62,7 +62,7 @@ display: none;
 }
 
 #results{
-  height:90vh;
+  min-height: 50vh;
 }
 
 #about{
@@ -71,6 +71,7 @@ display: none;
 
 #register{
   height:50vh;
+  min-height: 25vh;
   margin-top: 25vh;
 }
 
@@ -80,7 +81,7 @@ display: none;
 }
 
 #footer{
-  height:10vh;
+  min-height:10vh;
   background-color: black;
   color:white;
 }
