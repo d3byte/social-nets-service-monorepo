@@ -1,6 +1,8 @@
 <?php
   require 'db.php';
   require 'libs/Actions.class.php';
+  if(isset($_SESSION['logged_user'])) {
+    $user = R::findOne('users', 'id = ?', array($_SESSION['logged_user']['id']));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +48,12 @@
       <div class="row">
         <center><h3 style="color:#16a085;">Заказ успешно оплачен!</h3></center>
         <hr>
+        <div class="col-lg-12">
+          <center>
+            <a href="market.php"><button class="btn btn-success btn-outline">Перейти к товарам</button></a>
+          </center>
+        </div>
+        <hr>
         <?php
           if(isset($_POST))
             echo var_dump($_POST).'<hr>';
@@ -53,3 +61,6 @@
       </div>
     </div>
   </main>
+  <?php
+    } else header('Location: signin.php');
+  ?>
