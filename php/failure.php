@@ -46,11 +46,11 @@
   <main>
     <div class="container-fluid">
       <div class="row">
-        <center><h3 style="color:#16a085;">Баланс успешно пополнен!</h3></center>
+        <center><h3 style="color:#ff0000;">Не удалось провести пополнение баланса!</h3></center>
         <hr>
         <div class="col-lg-12">
           <center>
-            <a href="market.php"><button class="btn btn-success btn-outline">Перейти к товарам</button></a>
+            <a href="balance.php"><button class="btn btn-success btn-outline">Попробовать ещё раз</button></a>
           </center>
         </div>
         <hr>
