@@ -1,6 +1,6 @@
 <?php
   require 'db.php';
-  require 'libs/Actions.class.php';
+  require 'libs/Actions.class.php';/
   $errors = [];
   if(isset($_POST['submit'])) {
     if($_POST['password'] != $_POST['password2'])
