@@ -43,7 +43,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="#about">Немного о нас</a></li>
           <li><a href="../php/register.php">Регистрация</a></li>
-          <li><a href="../php/login.php">Вход</a></li>
+          <li><a href="../php/signin.php">Вход</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
