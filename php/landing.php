@@ -42,133 +42,132 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="#about">Немного о нас</a></li>
-          <li><a href="../php/signup.php">Регистрация</a></li>
-          <li><a href="../php/signin.php">Вход</a></li>
+          <li><a href="../php/register.php">Регистрация</a></li>
+          <li><a href="../php/login.php">Вход</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
 
-  <div class="container" id="about">
-    <center>
-  <h1> Лучшим людям предлагаем лучших подписчиков! <br>
-    Предлагаем пролистать чуть ниже, <br>
-     чтобы познакомиться с нами поближе.
-   </h1>
-   <br>
-  <i class="icono-caretDown"></i>
-  <h2> Что мы можем тебе предложить?</h2>
-  <div class="row">
-    <center>
-    <div class="col-lg-4 left-bar">
-      <h3>Живое продвижение</h3>
-      <p> Недорого, быстро, удобно </p>
-    </div>
-    <div class="col-lg-4"></div>
-    <div class="col-lg-4 right-bar">
-      <h3>Накрутка мёртвых душ </h3>
-      <p> Ещё быстрее, ещё дешевле, ещё удобнее </p>
-    </div>
-    </center>
-  </div>
-  </div>
-
-  <div class="container" id="results">
-    <center>
-  <h1> Результаты на сегодня </h1>
-  <div id="date"></div>
-  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="../src/scr1.jpg" alt="...">
-        <div class="carousel-caption">
-        </div>
-      </div>
-      <div class="item">
-        <img src="../src/scr2.jpg" alt="...">
-        <div class="carousel-caption">
-        </div>
-      </div>
-      <div class="item">
-        <img src="../src/scr3.jpg" alt="...">
-        <div class="carousel-caption">
-        </div>
-      </div>
-      <div class="item">
-        <img src="../src/scr4.jpg" alt="...">
-        <div class="carousel-caption">
-        </div>
-      </div>
-    </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-  </center>
-  </div>
-
-  <div class="container" id="numbers">
+<div class="container" id="about">
   <center>
-    <h1> Мы в цифрах </h1>
-    <br>
-    <div class="row">
-      <div class="col-lg-3">
-        <i class="icono-check"></i>
-        <h3> 2724 </h3>
-        <p class="semi-tr"> Успешных заказов </p>
-      </div>
-      <div class="col-lg-3">
-        <i class="icono-user"></i>
-        <h3> 34М </h3>
-        <p class="semi-tr"> Подписчиков добавили </p>
-      </div>
-      <div class="col-lg-3">
-        <i class="icono-sun"></i>
-        <h3> 8М </h3>
-        <p class="semi-tr"> Лайков </p>
-      </div>
-      <div class="col-lg-3">
-        <i class="icono-clock"></i>
-        <h3> 24 часа </h3>
-        <p class="semi-tr"> Часы работы службы поддержки </p>
+<h1> Лучшим людям предлагаем лучших подписчиков! <br>
+  Предлагаем пролистать чуть ниже, <br>
+   чтобы познакомиться с нами поближе.
+ </h1>
+ <br>
+<i class="icono-caretDown"></i>
+<h2> Что мы можем тебе предложить?</h2>
+<div class="row">
+  <center>
+  <div class="col-lg-4 left-bar">
+    <h3>Живое продвижение</h3>
+    <p> Недорого, быстро, удобно </p>
+  </div>
+  <div class="col-lg-4"></div>
+  <div class="col-lg-4 right-bar">
+    <h3>Накрутка мёртвых душ </h3>
+    <p> Ещё быстрее, ещё дешевле, ещё удобнее </p>
+  </div>
+  </center>
+</div>
+</div>
+
+<div class="container" id="results">
+  <center>
+<h1> Результаты на сегодня </h1>
+<div id="date"></div>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="../src/scr1.jpg" alt="...">
+      <div class="carousel-caption">
       </div>
     </div>
-  </center>
-  </div>
-
-  <div class="container" id="register">
-    <center>
-      <h1> Зарегистрируйся прямо сейчас <br> и закажи своих первых подписчиков уже <br>
-        через 7 секунд после регистрации! </h1>
-        <button name="submit" type="submit" class="btn btn-success btn-outline" href="../php/register.php">Зарегистрироваться</button>
-    </center>
-  </div>
-
-  <footer>
-
-      <div class="footer" id="footer">
-          <div class="container">
-              <div class="row">
-                      <center>
-                          <a href="//www.free-kassa.ru/"><img src="//www.free-kassa.ru/img/fk_btn/22.png"></a>
-                          <br>
-                          <p style="color:gray">Made with love by <span><a id="landhref" href="http://izerrio.pro">iZerrio Studio, 2017 </a></span></p>
-                      </center>
-              </div>
-              <!--/.row-->
-          </div>
-          <!--/.container-->
+    <div class="item">
+      <img src="../src/scr2.jpg" alt="...">
+      <div class="carousel-caption">
       </div>
-  </body>
+    </div>
+    <div class="item">
+      <img src="../src/scr3.jpg" alt="...">
+      <div class="carousel-caption">
+      </div>
+    </div>
+    <div class="item">
+      <img src="../src/scr4.jpg" alt="...">
+      <div class="carousel-caption">
+      </div>
+    </div>
+  </div>
 
-  </html>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</center>
+</div>
+
+<div class="container" id="numbers">
+<center>
+  <h1> Мы в цифрах </h1>
+  <br>
+  <div class="row">
+    <div class="col-lg-3">
+      <i class="icono-check"></i>
+      <h3> 2724 </h3>
+      <p class="semi-tr"> Успешных заказов </p>
+    </div>
+    <div class="col-lg-3">
+      <i class="icono-user"></i>
+      <h3> 34М </h3>
+      <p class="semi-tr"> Подписчиков добавили </p>
+    </div>
+    <div class="col-lg-3">
+      <i class="icono-sun"></i>
+      <h3> 8М </h3>
+      <p class="semi-tr"> Лайков </p>
+    </div>
+    <div class="col-lg-3">
+      <i class="icono-clock"></i>
+      <h3> 24 часа </h3>
+      <p class="semi-tr"> Часы работы службы поддержки </p>
+    </div>
+  </div>
+</center>
+</div>
+
+<div class="container" id="register">
+  <center>
+    <h1> Зарегистрируйся прямо сейчас <br> и закажи своих первых подписчиков уже <br>
+      через 7 секунд после регистрации! </h1>
+      <button name="submit" type="submit" class="btn btn-success btn-outline" href="../php/register.php">Зарегистрироваться</button>
+  </center>
+</div>
+
+<footer>
+
+    <div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                    <center>
+                        <a href="//www.free-kassa.ru/"><img src="//www.free-kassa.ru/img/fk_btn/22.png"></a>
+                        <br>
+                        <p style="color:gray">Made with love by <span><a id="landhref" href="http://izerrio.pro">iZerrio Studio, 2017 </a></span></p>
+                    </center>
+            </div>
+            <!--/.row-->
+        </div>
+        <!--/.container-->
+    </div>
+</body>
+
+</html>
